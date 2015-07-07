@@ -16,4 +16,4 @@ ssl_client_verify_header = SSL_CLIENT_VERIFY
 
 [agent]
 # Reed's machine, the one this file is on.
-server=ubuntu-trusty-ec2-reedrs.us-west-2.compute.internal
+server=ip-10-0-4-230.us-west-2.compute.internal
