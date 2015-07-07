@@ -1,9 +1,9 @@
 #connor-trusty
-node 10.0.4.226 {
+node connor-trusty {
 }
 #joeyubuntu
-node 10.0.4.27 {
+node joeyubuntu {
 }
 #ubuntu-trusty-ec2-reedrs
-node 10.0.4.230 {
+node ubuntu-trusty-ec2-reedrs {
 }
