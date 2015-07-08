@@ -1,10 +1,10 @@
 #connor's instance
 
-#node ip-10-0-4-226 {
-#}
-
-node connor-trusty {
+node ip-10-0-4-226 {
 }
+
+#node connor-trusty {
+#}
 
 #joey's instance
 node ip-10-0-4-27 {
