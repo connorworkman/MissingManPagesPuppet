@@ -1,6 +1,7 @@
 #connor's instance
 
 node ip-10-0-4-226 {
+	include sshd
 }
 
 #node connor-trusty {
