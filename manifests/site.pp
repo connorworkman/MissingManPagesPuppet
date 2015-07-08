@@ -1,9 +1,14 @@
-#connor-trusty
+#connor's instance
 node ip-10-0-4-226 {
 }
-#joeyubuntu
+#joey's instance
 node ip-10-0-4-27 {
 }
-#ubuntu-trusty-ec2-reedrs
+#puppetmaster (reed's instance)
 node ip-10-0-4-230 {
+	cron { "puppet update":
+		command	=> "cd /etc/puppet && git pull -q origin master",
+		user	=> root,
+		minute	=> "*/5",
+	}
 }
