@@ -9,6 +9,6 @@ node ip-10-0-4-230 {
 	cron { "puppet update":
 		command	=> "cd /etc/puppet && git pull origin master",
 		user	=> root,
-		minute	=> "*/11111111111",
+		minute	=> "*/1",
 	}
 }
