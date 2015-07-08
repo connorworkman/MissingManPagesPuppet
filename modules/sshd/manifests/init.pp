@@ -1,6 +1,6 @@
 class sshd {
 	package {
-		"openssh-server": ensure ==> installed;
+		"openssh-server": ensure => installed;
 	}
 
 	file { "/etc/ssh/sshd_config":
