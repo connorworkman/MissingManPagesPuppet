@@ -31,7 +31,7 @@ class sshd {
 	}
 
 
-	ssh_authorized_key { "reedrs":
+	ssh_authorized_key { "2015-06-25 reedrs":
 		user	=> "ubuntu",
 		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQDPaTvMn1HIPU2DulP6hOJqKKF/7xpUDoSG0r/oGyFr8e6RGnmH3TM/HMAj5ero8iHZGfMqyAB7FOucootVS/TrwpHXy0B1UEQwqleBnA5OnMTDg5JCTgtV+srkTBDgCTsi9HxS5mYCze1sBpePvMwgLGe4WZSUwYKojzKNY49npKZ9sWuTUYdaPTbTTSVTPjyd1onW0VWjcwFxX9j9j90Hb6B89u3LYNAO9IpjZiKzy1oQky3l2kd8Agn6GPda3v5RvkMDW4223VDLFhrCifdYzdPQ1TGyWXWfQPBrBuVr4IUB68jDl6PHPQPCxvzrjJv3cqN3Y2310jf5IvwmEaVx",
 	}
