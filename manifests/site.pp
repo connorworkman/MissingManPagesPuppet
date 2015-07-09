@@ -2,6 +2,7 @@
 
 node ip-10-0-4-226 {
 	include sshd
+	include another-module
 }
 
 #node connor-trusty {
