@@ -18,4 +18,5 @@ node ip-10-0-4-230 {
 		user	=> root,
 		minute	=> "*/5",
 	}
+	include another-module
 }
