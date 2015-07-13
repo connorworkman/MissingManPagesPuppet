@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# tests that when apache2 packages are not present on the system that they are i
-nstalled by puppet #
-#
-                   #
+# tests that when apache2 packages are not present on #
+# the system that they are i nstalled by puppet       #
+#                                                     #
 
 sudo apt-get -qq purge apache2*
 
