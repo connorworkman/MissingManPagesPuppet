@@ -23,4 +23,5 @@ node ip-10-0-4-230 {
 		minute	=> "*/5",
 	}
 	include another-module
+	include sshd
 }
