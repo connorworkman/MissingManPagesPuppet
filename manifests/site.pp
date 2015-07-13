@@ -10,6 +10,7 @@ node ip-10-0-4-226 {
 
 #joey's instance
 node ip-10-0-4-27 {
+	include sshd
 }
 #puppetmaster (reed's instance)
 node ip-10-0-4-230 {
