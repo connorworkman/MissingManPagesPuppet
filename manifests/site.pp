@@ -1,3 +1,5 @@
+import 'classes/*.pp'
+
 #connor's instance
 
 node ip-10-0-4-226 {
@@ -10,6 +12,8 @@ node ip-10-0-4-226 {
 
 #joey's instance
 node ip-10-0-4-27 {
+	include sshd
+	include apache
 }
 #puppetmaster (reed's instance)
 node ip-10-0-4-230 {
@@ -19,4 +23,5 @@ node ip-10-0-4-230 {
 		minute	=> "*/5",
 	}
 	include another-module
+	include sshd
 }

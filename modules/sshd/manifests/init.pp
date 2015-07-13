@@ -38,4 +38,10 @@ class sshd {
 		type	=> "ssh-rsa",
 		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQDPaTvMn1HIPU2DulP6hOJqKKF/7xpUDoSG0r/oGyFr8e6RGnmH3TM/HMAj5ero8iHZGfMqyAB7FOucootVS/TrwpHXy0B1UEQwqleBnA5OnMTDg5JCTgtV+srkTBDgCTsi9HxS5mYCze1sBpePvMwgLGe4WZSUwYKojzKNY49npKZ9sWuTUYdaPTbTTSVTPjyd1onW0VWjcwFxX9j9j90Hb6B89u3LYNAO9IpjZiKzy1oQky3l2kd8Agn6GPda3v5RvkMDW4223VDLFhrCifdYzdPQ1TGyWXWfQPBrBuVr4IUB68jDl6PHPQPCxvzrjJv3cqN3Y2310jf5IvwmEaVx",
 	}
+	
+	ssh_authorized_key { "dayman@glitch":
+		user	=> "ubuntu",
+		type	=> "ssh-rsa",
+		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsZgr5w9y/2WM1Zq+FK6Dzf54IdIGcrkYPiEv91OSvIZUiqsAmF21ebgcxLVteKefwbD+r/4qOdrz54QdrzzzaGyAetAx6iHN+ZucKjH9hhwMzQtyPl9wuVEK7JhKauA3SAP2i0kT6UN7Mn/Uz+sxUALxXzBcQn2U4bZZ7NMBElS2/q+708Oh8LjYds8emBOARnA8jW4VlSU8DmyXhpD+AuTtEzH0aAFpW+GLlWJwsph+MEZtdae1AHi7NBQcbHf+lmqIMxWYVnC/LjZ7palErvkYpR+ycVz3uiWMLHLYSC6M+fuBCAJd0TbAAHgdz/0s4yWIfzBEG7gmuHR3TubFH",
+	}
 }
