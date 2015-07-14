@@ -48,3 +48,4 @@ class sendmail-connor {
 		enable	=> true,
 		ensure	=> running,
 	}
+}
