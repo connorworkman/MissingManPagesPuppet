@@ -1,5 +1,5 @@
 class apache2 {
-	file { "/etc/apache/apache2.conf":
+	file { "/etc/apache2/apache2.conf":
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
