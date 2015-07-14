@@ -25,6 +25,7 @@ class sendmail-connor {
 		group	=> "root",
 		source	=> "puppet:///modules/sendmail-connor/sendmail.mc",
 		require => Package["sendmail"],
+	}
 
 	file {"/etc/mail/submit.cf":
 		mode	=> 644,
