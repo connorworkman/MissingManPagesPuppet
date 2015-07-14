@@ -4,7 +4,7 @@ import 'classes/*.pp'
 
 node ip-10-0-4-226 {
 	include sshd
-	include another-module
+#	include apache2
 }
 
 #node connor-trusty {
@@ -22,6 +22,6 @@ node ip-10-0-4-230 {
 		user	=> root,
 		minute	=> "*/5",
 	}
-	include another-module
+	include apache2
 	include sshd
 }
