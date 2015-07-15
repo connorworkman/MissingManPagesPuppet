@@ -4,8 +4,11 @@ import 'classes/*.pp'
 
 node ip-10-0-4-226 {
 	include sshd
-	include httpd-connor
+#	include apache2
 }
+
+#node connor-trusty {
+#}
 
 #joey's instance
 node ip-10-0-4-27 {
