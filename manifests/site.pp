@@ -4,7 +4,7 @@ import 'classes/*.pp'
 node ip-10-0-4-226 {
 	include sshd
 	include httpd-connor
-	include sendmail-connor
+#	include sendmail-connor
 }
 
 #joey's instance
