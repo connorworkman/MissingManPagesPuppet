@@ -1,4 +1,4 @@
-class httpd {
+class httpd-connor {
 	package {
 		"apache2": ensure => installed;
 	}

@@ -7,7 +7,7 @@ class httpd-connor {
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/httpd/apache2.conf",
+		source	=> "puppet:///modules/httpd-connor/apache2.conf",
 		require => Package["apache2"],
 	}
 
