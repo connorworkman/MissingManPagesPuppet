@@ -21,7 +21,7 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
-##### built by root@ip-10-0-4-226 on Thu Jul 16 00:49:22 UTC 2015
+##### built by root@ip-10-0-4-226 on Thu Jul 16 20:59:01 UTC 2015
 ##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
@@ -73,6 +73,7 @@
 
 
 #####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
+Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 #####  $Id: use_cw_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
 
@@ -81,6 +82,7 @@
 
 
 #####  $Id: smrsh.m4,v 8.14 1999/11/18 05:06:23 ca Exp $  #####
+
 
 
 #####  $Id: proto.m4,v 8.741 2009/12/11 00:04:53 ca Exp $  #####
@@ -160,6 +162,7 @@ Kdequote dequote
 # class M: domains that should be converted to $M
 # class N: domains that should not be converted to $M
 #CL root
+C{w}ec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 
 
@@ -169,9 +172,6 @@ DnMAILER-DAEMON
 
 # Access list database (for spam stomping)
 Kaccess hash -T<TMPF> /etc/mail/access
-
-
-Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 ## Custom configurations below (will be preserved)
 
@@ -1787,9 +1787,9 @@ SAddDomain
 Mlocal,		P=/usr/sbin/sensible-mda, F=lsDFMAw5:/|@qPn9S, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL,
 		T=DNS/RFC822/X-Unix,
 		A=sensible-mda $g $u $h ${client_addr}
-Mprog,		P=/bin/sh, F=lsDFMoqeu9, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL, D=$z:/,
+Mprog,		P=/usr/lib/sm.bin/smrsh, F=lsDFMoqeu9, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL, D=$z:/,
 		T=X-Unix/X-Unix/X-Unix,
-		A=sh -c $u
+		A=smrsh -c $u
 
 #####################################
 ###   SMTP Mailer specification   ###
@@ -1884,8 +1884,6 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 		A=TCP $h
 
 
-
-
 ### /etc/mail/sendmail.mc ###
 # divert(-1)dnl
 # #-----------------------------------------------------------------------------
@@ -1976,6 +1974,12 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # dnl # Stop connections that overflow our concurrent and time connection rates
 # FEATURE(`conncontrol', `nodelay', `terminate')dnl
 # FEATURE(`ratecontrol', `nodelay', `terminate')dnl
+# FEATURE(`masquerade_envelope')dnl
+# Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
+# FEATURE(`use_cw_file')dnl
+# FEATURE(`use_ct_file')dnl
+# FEATURE(`smrsh')dnl
+# 
 # dnl #
 # dnl # If you're on a dialup link, you should enable this - so sendmail
 # dnl # will not bring up the link (it will queue mail for later)
@@ -1987,17 +1991,6 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # include(`/etc/mail/m4/provider.m4')dnl
 # dnl #
 # dnl # Default Mailer setup
-# MAILER_DEFINITIONS
-# MAILER(`local')dnl
-# MAILER(`smtp')dnl
-# 
-# LOCAL_CONFIG
-# FEATURE(`masquerade_envelope')dnl
-# LOCAL_CONFIG
-# Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
-# FEATURE(`use_cw_file')dnl
-# FEATURE(`use_ct_file')dnl
-# FEATURE(`smrsh')dnl
 # dnl #
 # dnl # Dialup/LAN connection overrides
 # dnl #
@@ -2007,3 +2000,4 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # 
 # LOCAL_CONFIG
 # ## Custom configurations below (will be preserved)
+# LOCAL_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
