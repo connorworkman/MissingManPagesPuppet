@@ -1,5 +1,5 @@
 #
-#   Copyright (c) 1998-2005 Richard Nelson.  All Rights Reserved.
+#   Copyright (c) 2000-2002 Richard Nelson.  All Rights Reserved.
 #
 #  This file is used to configure Sendmail for use with Debian systems.
 #
@@ -21,8 +21,8 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
-##### built by root@ip-10-0-4-226 on Thu Jul 16 20:59:01 UTC 2015
-##### in /etc/mail
+##### built by root@ip-10-0-4-230 on Wed Jul 15 21:59:56 UTC 2015
+##### in /home/reedrs
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
 ######################################################################
@@ -34,7 +34,7 @@
 
 #####  $Id: cfhead.m4,v 8.120 2009/01/23 22:39:21 ca Exp $  #####
 #####  $Id: cf.m4,v 8.32 1999/02/07 07:26:14 gshapiro Exp $  #####
-#####  $Id: sendmail.mc, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
+#####  $Id: submit.mc, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
 #####  $Id: autoconf.m4, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
 #####  $Id: debian.m4, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
 #
@@ -52,37 +52,13 @@
 #
  
 #-------------------------------------------------------------------------
-#####  $Id: debian-mta.m4, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
-
+#####  $Id: debian-msp.m4, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
 
 #####  $Id: no_default_msa.m4,v 8.2 2001/02/14 05:03:22 gshapiro Exp $  #####
 
-#####  $Id: use_cw_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
+#####  $Id: msp.m4,v 1.33 2004/02/09 22:32:38 ca Exp $  #####
 
-
-#####  $Id: access_db.m4,v 8.27 2006/07/06 21:10:10 ca Exp $  #####
-
-#####  $Id: greet_pause.m4,v 1.4 2004/07/06 20:49:51 ca Exp $  #####
-
-#####  $Id: delay_checks.m4,v 8.8 2000/12/05 18:50:45 ca Exp $  #####
-
-#####  $Id: conncontrol.m4,v 1.4 2004/02/19 21:31:47 ca Exp $  #####
-
-
-#####  $Id: ratecontrol.m4,v 1.5 2004/02/19 21:31:47 ca Exp $  #####
-
-
-#####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
-Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
-
-#####  $Id: use_cw_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
-
-
-#####  $Id: use_ct_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
-
-
-#####  $Id: smrsh.m4,v 8.14 1999/11/18 05:06:23 ca Exp $  #####
-
+#####  $Id: no_default_msa.m4,v 8.2 2001/02/14 05:03:22 gshapiro Exp $  #####
 
 
 #####  $Id: proto.m4,v 8.741 2009/12/11 00:04:53 ca Exp $  #####
@@ -93,7 +69,7 @@ V10/Berkeley
 # override file safeties - setting this option compromises system security,
 # addressing the actual file configuration problem is preferred
 # need to set this before any file actions are encountered in the cf file
-O DontBlameSendmail=			,AssumeSafeChown,ForwardFileInGroupWritableDirPath,GroupWritableForwardFileSafe,GroupWritableIncludeFileSafe,IncludeFileInGroupWritableDirPath,DontWarnForwardFileInUnsafeDirPath,TrustStickyBit,NonRootSafeAddr,GroupWritableIncludeFile,GroupReadableaDefaultAuthInfoFile
+#O DontBlameSendmail=safe
 
 # default LDAP map specification
 # need to set this now before any LDAP maps are defined
@@ -108,8 +84,6 @@ O DontBlameSendmail=			,AssumeSafeChown,ForwardFileInGroupWritableDirPath,GroupW
 #D{sendmailMTACluster}$m
 
 Cwlocalhost
-# file containing names of hosts for which we receive email
-Fw/etc/mail/local-host-names %[^\#]
 
 # my official domain name
 # ... define this only if sendmail cannot automatically determine your domain
@@ -131,9 +105,6 @@ C..
 # a class with just a left bracket (for identifying domain literals)
 C[[
 
-# access_db acceptance class
-C{Accept}OK RELAY
-
 
 # Resolve map (to check if a host exists in check_mail)
 Kresolve host -a<OKR> -T<TEMP>
@@ -145,10 +116,6 @@ FR-o /etc/mail/relay-domains %[^\#]
 
 # arithmetic map
 Karith arith
-# macro storage map
-Kmacro macro
-# possible values for TLS_connection in access map
-C{Tls}VERIFY ENCR
 
 
 
@@ -162,7 +129,6 @@ Kdequote dequote
 # class M: domains that should be converted to $M
 # class N: domains that should not be converted to $M
 #CL root
-C{w}ec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 
 
@@ -170,13 +136,11 @@ C{w}ec2-52-27-147-194.us-west-2.compute.amazonaws.com
 DnMAILER-DAEMON
 
 
-# Access list database (for spam stomping)
-Kaccess hash -T<TMPF> /etc/mail/access
+D{MTAHost}[127.0.0.1]
 
-## Custom configurations below (will be preserved)
 
 # Configuration version number
-DZ8.14.4/Debian-4.1ubuntu1
+DZ8.14.4/Submit
 
 
 ###############
@@ -193,7 +157,7 @@ O SevenBitInput=False
 O AliasWait=10
 
 # location of alias file
-O AliasFile=/etc/mail/aliases
+#O AliasFile=/etc/mail/aliases
 
 # minimum number of free blocks on filesystem
 O MinFreeBlocks=100
@@ -211,7 +175,7 @@ O HoldExpensive=False
 #O CheckpointInterval=10
 
 # default delivery mode
-O DeliveryMode=background
+O DeliveryMode=i
 
 # error message header/file
 #O ErrorHeader=/etc/mail/error-header
@@ -223,7 +187,7 @@ O DeliveryMode=background
 #O SaveFromLine=False
 
 # queue file mode (qf files)
-O QueueFileMode=0640
+O QueueFileMode=0660
 
 # temporary file mode
 O TempFileMode=0640
@@ -232,7 +196,7 @@ O TempFileMode=0640
 #O MatchGECOS=False
 
 # maximum hop count
-O MaxHopCount=100
+#O MaxHopCount=25
 
 # location of help file
 O HelpFile=/etc/mail/helpfile
@@ -247,7 +211,7 @@ O ResolverOptions=+WorkAroundBrokenAAAA
 O SendMimeErrors=True
 
 # Forward file search path
-O ForwardPath=$z/.forward.$w:$z/.forward
+O ForwardPath
 
 # open connection cache size
 O ConnectionCacheSize=2
@@ -256,7 +220,7 @@ O ConnectionCacheSize=2
 O ConnectionCacheTimeout=5m
 
 # persistent host status directory
-#O HostStatusDirectory=.hoststat
+O HostStatusDirectory
 
 # single thread deliveries (requires HostStatusDirectory)?
 #O SingleThreadDelivery=False
@@ -278,8 +242,7 @@ O OldStyleHeaders=True
 
 # SMTP daemon options
 
-O DaemonPortOptions=Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1
-O DaemonPortOptions=Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1
+O DaemonPortOptions=Name=NoMTA, Addr=127.0.0.1, M=E
 
 # SMTP client options
 #O ClientPortOptions=Family=inet, Address=0.0.0.0
@@ -288,10 +251,10 @@ O DaemonPortOptions=Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0
 #O DirectSubmissionModifiers
 
 # Use as mail submission program? See sendmail/SECURITY
-#O UseMSP
+O UseMSP=True
 
 # privacy flags
-O PrivacyOptions=needmailhelo,needexpnhelo,needvrfyhelo,restrictqrun,restrictexpand,nobodyreturn,authwarnings
+O PrivacyOptions=goaway,noetrn,restrictqrun
 
 # who (if anyone) should get extra copies of error messages
 #O PostmasterCopy=Postmaster
@@ -303,7 +266,7 @@ O PrivacyOptions=needmailhelo,needexpnhelo,needvrfyhelo,restrictqrun,restrictexp
 #O MaxQueueChildren
 
 # maximum number of queue-runners per queue-grouping with multiple queues
-O MaxRunnersPerQueue=5
+#O MaxRunnersPerQueue=1
 
 # priority of queue runners (nice(3))
 #O NiceQueueRun
@@ -321,7 +284,7 @@ O MaxRunnersPerQueue=5
 #O FastSplit=1
 
 # queue directory
-O QueueDirectory=/var/spool/mqueue
+O QueueDirectory=/var/spool/mqueue-client
 
 # key for shared memory; 0 to turn off, -1 to auto-select
 #O SharedMemoryKey=0
@@ -333,7 +296,7 @@ O QueueDirectory=/var/spool/mqueue
 #O Timeout.initial=5m
 #O Timeout.connect=5m
 #O Timeout.aconnect=0s
-O Timeout.iconnect=2m
+O Timeout.iconnect=2s
 #O Timeout.helo=5m
 O Timeout.mail=2m
 #O Timeout.rcpt=1h
@@ -357,7 +320,7 @@ O Timeout.queuewarn=4h
 #O Timeout.queuewarn.urgent=1h
 #O Timeout.queuewarn.non-urgent=12h
 #O Timeout.queuewarn.dsn=4h
-#O Timeout.hoststatus=30m
+O Timeout.hoststatus=0
 #O Timeout.resolver.retrans=5s
 #O Timeout.resolver.retrans.first=5s
 #O Timeout.resolver.retrans.normal=5s
@@ -378,7 +341,7 @@ O Timeout.queuewarn=4h
 O SuperSafe=True
 
 # status file
-O StatusFile=/var/lib/sendmail/sendmail.st
+O StatusFile=/var/lib/sendmail/sm-client.st
 
 # time zone handling:
 #  if undefined, use system default
@@ -414,13 +377,13 @@ O DefaultUser=mail:mail
 #O DelayLA=0
 
 # maximum number of children we allow at one time
-O MaxDaemonChildren=0
+#O MaxDaemonChildren=0
 
 # maximum number of new connections per second
-O ConnectionRateThrottle=15
+#O ConnectionRateThrottle=0
 
 # Width of the window 
-O ConnectionRateWindowSize=10m
+#O ConnectionRateWindowSize=60s
 
 # work recipient factor
 #O RecipientFactor=30000
@@ -494,18 +457,18 @@ O OperatorChars=.:%@!^/[]+
 O DeadLetterDrop=/var/lib/sendmail/dead.letter
 
 # what user id do we assume for the majority of the processing?
-#O RunAsUser=sendmail
+O RunAsUser=smmsp
 
 # maximum number of recipients per SMTP envelope
 #O MaxRecipientsPerMessage=0
 
 # limit the rate recipients per SMTP envelope are accepted
 # once the threshold number of recipients have been rejected
-O BadRcptThrottle=3
+#O BadRcptThrottle=0
 
 
 # shall we get local names from our installed interfaces?
-#O DontProbeInterfaces=False
+O DontProbeInterfaces=True
 
 # Return-Receipt-To: header implies DSN request
 O RrtImpliesDsn=False
@@ -514,10 +477,10 @@ O RrtImpliesDsn=False
 #O ConnectOnlyTo=0.0.0.0
 
 # Trusted user for file ownership and starting the daemon
-O TrustedUser=smmta
+O TrustedUser=smmsp
 
 # Control socket for daemon management
-O ControlSocketName=/var/run/sendmail/mta/smcontrol
+O ControlSocketName=/var/run/sendmail/msp/smcontrol
 
 # Maximum MIME header length to protect MUAs
 #O MaxMimeHeaderLength=0/0
@@ -529,10 +492,10 @@ O ControlSocketName=/var/run/sendmail/mta/smcontrol
 #O MaxAliasRecursion=10
 
 # location of pid file
-O PidFile=/var/run/sendmail/mta/sendmail.pid
+O PidFile=/var/run/sendmail/msp/sendmail.pid
 
 # Prefix string for the process title shown on 'ps' listings
-O ProcessTitlePrefix=MTA
+O ProcessTitlePrefix=MSP
 
 # Data file (df) memory-buffer file maximum size
 #O DataFileBufferSize=4096
@@ -614,7 +577,7 @@ Pjunk=-100
 #####################
 
 # this is equivalent to setting class "t"
-Ft/etc/mail/trusted-users %[^\#]
+#Ft/etc/mail/trusted-users %[^\#]
 Troot
 Tdaemon
 Tuucp
@@ -972,7 +935,7 @@ R$* < @ *LOCAL* >	$@ $1 < @ $j . >
 ###################################################################
 
 SMasqEnv=94
-R$+			$@ $>MasqHdr $1
+R$* < @ *LOCAL* > $*	$: $1 < @ $j . > $2
 
 ###################################################################
 ###  Ruleset 98 -- local part of ruleset zero (can be null)	###
@@ -982,52 +945,6 @@ SParseLocal=98
 
 
 
-######################################################################
-###  D: LookUpDomain -- search for domain in access database
-###
-###	Parameters:
-###		<$1> -- key (domain name)
-###		<$2> -- default (what to return if not found in db)
-###		<$3> -- mark (must be <(!|+) single-token>)
-###			! does lookup only with tag
-###			+ does lookup with and without tag
-###		<$4> -- passthru (additional data passed unchanged through)
-######################################################################
-
-SD
-R<$*> <$+> <$- $-> <$*>		$: < $(access $4:$1 $: ? $) > <$1> <$2> <$3 $4> <$5>
-R<?> <$+> <$+> <+ $-> <$*>	$: < $(access $1 $: ? $) > <$1> <$2> <+ $3> <$4>
-R<SKIP> <$+> <$+> <$- $-> <$*>	$@ <$2> <$5>
-R<?> <[$+.$-]> <$+> <$- $-> <$*>	$@ $>D <[$1]> <$3> <$4 $5> <$6>
-R<?> <[$+::$-]> <$+> <$- $-> <$*>	$: $>D <[$1]> <$3> <$4 $5> <$6>
-R<?> <[$+:$-]> <$+> <$- $-> <$*>	$: $>D <[$1]> <$3> <$4 $5> <$6>
-R<?> <$+.$+> <$+> <$- $-> <$*>	$@ $>D <$2> <$3> <$4 $5> <$6>
-R<?> <$+> <$+> <$- $-> <$*>	$@ <$2> <$5>
-R<$* <TMPF>> <$+> <$+> <$- $-> <$*>	$@ <<TMPF>> <$6>
-R<$*> <$+> <$+> <$- $-> <$*>	$@ <$1> <$6>
-
-######################################################################
-###  A: LookUpAddress -- search for host address in access database
-###
-###	Parameters:
-###		<$1> -- key (dot quadded host address)
-###		<$2> -- default (what to return if not found in db)
-###		<$3> -- mark (must be <(!|+) single-token>)
-###			! does lookup only with tag
-###			+ does lookup with and without tag
-###		<$4> -- passthru (additional data passed through)
-######################################################################
-
-SA
-R<$+> <$+> <$- $-> <$*>		$: < $(access $4:$1 $: ? $) > <$1> <$2> <$3 $4> <$5>
-R<?> <$+> <$+> <+ $-> <$*>	$: < $(access $1 $: ? $) > <$1> <$2> <+ $3> <$4>
-R<SKIP> <$+> <$+> <$- $-> <$*>	$@ <$2> <$5>
-R<?> <$+::$-> <$+> <$- $-> <$*>		$@ $>A <$1> <$3> <$4 $5> <$6>
-R<?> <$+:$-> <$+> <$- $-> <$*>		$@ $>A <$1> <$3> <$4 $5> <$6>
-R<?> <$+.$-> <$+> <$- $-> <$*>		$@ $>A <$1> <$3> <$4 $5> <$6>
-R<?> <$+> <$+> <$- $-> <$*>	$@ <$2> <$5>
-R<$* <TMPF>> <$+> <$+> <$- $-> <$*>	$@ <<TMPF>> <$6>
-R<$*> <$+> <$+> <$- $-> <$*>	$@ <$1> <$6>
 
 ######################################################################
 ###  CanonAddr --	Convert an address into a standard form for
@@ -1068,8 +985,6 @@ R<?> $*				$@ $1
 
 
 R<NO> $* < @ $* $=R >		$: <RELAY> $1 < @ $2 $3 >
-R<NO> $* < @ $+ >		$: $>D <$2> <NO> <+ To> <$1 < @ $2 >>
-R<$+> <$+>			$: <$1> $2
 
 
 
@@ -1081,12 +996,10 @@ R<$+> $*			$@ $2
 ###  check_relay -- check hostname/address on SMTP startup
 ######################################################################
 
-Scheck_relay
-R$*		$: $>"RateControl" dummy
-R$*		$: $>"ConnControl" dummy
+
 
 SLocal_check_relay
-Scheckrelay
+Scheck_relay
 R$*			$: $1 $| $>"Local_check_relay" $1
 R$* $| $* $| $#$*	$#$3
 R$* $| $* $| $*		$@ $>"Basic_check_relay" $1 $| $2
@@ -1097,20 +1010,6 @@ R$*			$: < $&{deliveryMode} > $1
 R< d > $*		$@ deferred
 R< $* > $*		$: $2
 
-R$+ $| $+		$: $>D < $1 > <?> <+ Connect> < $2 >
-R   $| $+		$: $>A < $1 > <?> <+ Connect> <>	empty client_name
-R<?> <$+>		$: $>A < $1 > <?> <+ Connect> <>	no: another lookup
-R<?> <$*>		$: OK				found nothing
-R<$={Accept}> <$*>	$@ $1				return value of lookup
-R<REJECT> <$*>		$#error $@ 5.7.1 $: "550 Access denied"
-R<DISCARD> <$*>		$#discard $: discard
-R<QUARANTINE:$+> <$*>	$#error $@ quarantine $: $1
-R<ERROR:$-.$-.$-:$+> <$*>	$#error $@ $1.$2.$3 $: $4
-R<ERROR:$+> <$*>		$#error $: $1
-R<$* <TMPF>> <$*>		$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<$+> <$*>		$#error $: $1
-
-
 
 
 
@@ -1119,7 +1018,7 @@ R<$+> <$*>		$#error $: $1
 ######################################################################
 
 SLocal_check_mail
-Scheckmail
+Scheck_mail
 R$*			$: $1 $| $>"Local_check_mail" $1
 R$* $| $#$*		$#$2
 R$* $| $*		$@ $>"Basic_check_mail" $1
@@ -1164,14 +1063,6 @@ R<?> $* < @ $+ >	$: <? $(resolve $2 $: $2 <PERM> $) > $1 < @ $2 >
 R<? $* <$->> $* < @ $+ >
 			$: <$2> $3 < @ $4 >
 
-# check sender address: user@address, user@, address
-R<$+> $+ < @ $* >	$: @<$1> <$2 < @ $3 >> $| <F:$2@$3> <U:$2@> <D:$3>
-R<$+> $+		$: @<$1> <$2> $| <U:$2@>
-R@ <$+> <$*> $| <$+>	$: <@> <$1> <$2> $| $>SearchList <+ From> $| <$3> <>
-R<@> <$+> <$*> $| <$*>	$: <$3> <$1> <$2>		reverse result
-# retransform for further use
-R<?> <$+> <$*>		$: <$1> $2	no match
-R<$+> <$+> <$*>		$: <$1> $3	relevant result, keep it
 
 # handle case of no @domain on address
 R<?> $*			$: $&{daemon_flags} $| <?> $1
@@ -1186,14 +1077,6 @@ R<?> $*			$: @ $1		mark address: nothing known about it
 R<$={ResOk}> $*		$: @ $2		domain ok
 R<TEMP> $*		$#error $@ 4.1.8 $: "451 Domain of sender address " $&f " does not resolve"
 R<PERM> $*		$#error $@ 5.1.8 $: "553 Domain of sender address " $&f " does not exist"
-R<$={Accept}> $*	$# $1		accept from access map
-R<DISCARD> $*		$#discard $: discard
-R<QUARANTINE:$+> $*	$#error $@ quarantine $: $1
-R<REJECT> $*		$#error $@ 5.7.1 $: "550 Access denied"
-R<ERROR:$-.$-.$-:$+> $*		$#error $@ $1.$2.$3 $: $4
-R<ERROR:$+> $*		$#error $: $1
-R<<TMPF>> $*		$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<$+> $*		$#error $: $1		error from access db
 
 
 
@@ -1202,7 +1085,7 @@ R<$+> $*		$#error $: $1		error from access db
 ######################################################################
 
 SLocal_check_rcpt
-Scheckrcpt
+Scheck_rcpt
 R$*			$: $1 $| $>"Local_check_rcpt" $1
 R$* $| $#$*		$#$2
 R$* $| $*		$@ $>"Basic_check_rcpt" $1
@@ -1256,10 +1139,7 @@ R$* $| $*		$: $1
 # anything terminating locally is ok
 R$+ < @ $=w >		$@ RELAY
 R$+ < @ $* $=R >	$@ RELAY
-R$+ < @ $+ >		$: $>D <$2> <?> <+ To> <$1 < @ $2 >>
-R<RELAY> $*		$@ RELAY
-R<$* <TMPF>> $*		$#TEMP $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<$*> <$*>		$: $2
+
 
 
 
@@ -1282,11 +1162,6 @@ R0			$@ RELAY		originated locally
 R127.0.0.1		$@ RELAY		originated locally
 RIPv6:::1		$@ RELAY		originated locally
 R$=R $*			$@ RELAY		relayable IP address
-R$*			$: $>A <$1> <?> <+ Connect> <$1>
-R<RELAY> $* 		$@ RELAY		relayable IP address
-
-R<<TMPF>> $*		$#TEMP $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<$*> <$*>		$: $2
 R$*			$: [ $1 ]		put brackets around it...
 R$=w			$@ RELAY		... and see if it is local
 
@@ -1303,161 +1178,9 @@ R<@> $+			$:<?>  $[ $1 $]
 R$* .			$1			strip trailing dots
 R<?> $=w		$@ RELAY
 R<?> $* $=R			$@ RELAY
-R<?> $*			$: $>D <$1> <?> <+ Connect> <$1>
-R<RELAY> $*		$@ RELAY
-R<$* <TMPF>> $*		$#TEMP $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<$*> <$*>		$: $2
-
-# turn a canonical address in the form user<@domain>
-# qualify unqual. addresses with $j
-SFullAddr
-R$* <@ $+ . >		$1 <@ $2 >
-R$* <@ $* >		$@ $1 <@ $2 >
-R$+			$@ $1 <@ $j >
-
-SDelay_TLS_Clt
-# authenticated?
-R$*			$: $1 $| $>"tls_client" $&{verify} $| MAIL
-R$* $| $#$+		$#$2
-R$* $| $*		$# $1
-R$*			$# $1
-
-SDelay_TLS_Clt2
-# authenticated?
-R$*			$: $1 $| $>"tls_client" $&{verify} $| MAIL
-R$* $| $#$+		$#$2
-R$* $| $*		$@ $1
-R$*			$@ $1
-
-# call all necessary rulesets
-Scheck_rcpt
-# R$@			$#error $@ 5.1.3 $: "553 Recipient address required"
-
-R$+			$: $1 $| $>checkrcpt $1
-R$+ $| $#error $*	$#error $2
-R$+ $| $#discard $*	$#discard $2
-R$+ $| $#$*		$@ $>"Delay_TLS_Clt" $2
-R$+ $| $*		$: <?> $>FullAddr $>CanonAddr $1
-R<?> $+ < @ $=w >	$: <> $1 < @ $2 > $| <F: $1@$2 > <D: $2 > <U: $1@>
-R<?> $+ < @ $* >	$: <> $1 < @ $2 > $| <F: $1@$2 > <D: $2 >
-# lookup the addresses only with Spam tag
-R<> $* $| <$+>		$: <@> $1 $| $>SearchList <! Spam> $| <$2> <>
-R<@> $* $| $*		$: $2 $1		reverse result
-# is the recipient a spam friend?
-R<FRIEND> $+		$@ $>"Delay_TLS_Clt2" SPAMFRIEND
-R<$*> $+		$: $2
-
-R$*			$: $1 $| $>checkmail $&{mail_from}
-R$* $| $#$*		$#$2
-R$* $| $*		$: $1 $| $>checkrelay $&{client_name} $| $&{client_addr}
-R$* $| $#$*		$#$2
-R$* $| $*		$: $1
 
 
 
-######################################################################
-###  F: LookUpFull -- search for an entry in access database
-###
-###	lookup of full key (which should be an address) and
-###	variations if +detail exists: +* and without +detail
-###
-###	Parameters:
-###		<$1> -- key
-###		<$2> -- default (what to return if not found in db)
-###		<$3> -- mark (must be <(!|+) single-token>)
-###			! does lookup only with tag
-###			+ does lookup with and without tag
-###		<$4> -- passthru (additional data passed unchanged through)
-######################################################################
-
-SF
-R<$+> <$*> <$- $-> <$*>		$: <$(access $4:$1 $: ? $)> <$1> <$2> <$3 $4> <$5>
-R<?> <$+> <$*> <+ $-> <$*>	$: <$(access $1 $: ? $)> <$1> <$2> <+ $3> <$4>
-R<?> <$+ + $* @ $+> <$*> <$- $-> <$*>
-			$: <$(access $6:$1+*@$3 $: ? $)> <$1+$2@$3> <$4> <$5 $6> <$7>
-R<?> <$+ + $* @ $+> <$*> <+ $-> <$*>
-			$: <$(access $1+*@$3 $: ? $)> <$1+$2@$3> <$4> <+ $5> <$6>
-R<?> <$+ + $* @ $+> <$*> <$- $-> <$*>
-			$: <$(access $6:$1@$3 $: ? $)> <$1+$2@$3> <$4> <$5 $6> <$7>
-R<?> <$+ + $* @ $+> <$*> <+ $-> <$*>
-			$: <$(access $1@$3 $: ? $)> <$1+$2@$3> <$4> <+ $5> <$6>
-R<?> <$+> <$*> <$- $-> <$*>	$@ <$2> <$5>
-R<$+ <TMPF>> <$*> <$- $-> <$*>	$@ <<TMPF>> <$5>
-R<$+> <$*> <$- $-> <$*>		$@ <$1> <$5>
-
-######################################################################
-###  E: LookUpExact -- search for an entry in access database
-###
-###	Parameters:
-###		<$1> -- key
-###		<$2> -- default (what to return if not found in db)
-###		<$3> -- mark (must be <(!|+) single-token>)
-###			! does lookup only with tag
-###			+ does lookup with and without tag
-###		<$4> -- passthru (additional data passed unchanged through)
-######################################################################
-
-SE
-R<$*> <$*> <$- $-> <$*>		$: <$(access $4:$1 $: ? $)> <$1> <$2> <$3 $4> <$5>
-R<?> <$+> <$*> <+ $-> <$*>	$: <$(access $1 $: ? $)> <$1> <$2> <+ $3> <$4>
-R<?> <$+> <$*> <$- $-> <$*>	$@ <$2> <$5>
-R<$+ <TMPF>> <$*> <$- $-> <$*>	$@ <<TMPF>> <$5>
-R<$+> <$*> <$- $-> <$*>		$@ <$1> <$5>
-
-######################################################################
-###  U: LookUpUser -- search for an entry in access database
-###
-###	lookup of key (which should be a local part) and
-###	variations if +detail exists: +* and without +detail
-###
-###	Parameters:
-###		<$1> -- key (user@)
-###		<$2> -- default (what to return if not found in db)
-###		<$3> -- mark (must be <(!|+) single-token>)
-###			! does lookup only with tag
-###			+ does lookup with and without tag
-###		<$4> -- passthru (additional data passed unchanged through)
-######################################################################
-
-SU
-R<$+> <$*> <$- $-> <$*>		$: <$(access $4:$1 $: ? $)> <$1> <$2> <$3 $4> <$5>
-R<?> <$+> <$*> <+ $-> <$*>	$: <$(access $1 $: ? $)> <$1> <$2> <+ $3> <$4>
-R<?> <$+ + $* @> <$*> <$- $-> <$*>
-			$: <$(access $5:$1+*@ $: ? $)> <$1+$2@> <$3> <$4 $5> <$6>
-R<?> <$+ + $* @> <$*> <+ $-> <$*>
-			$: <$(access $1+*@ $: ? $)> <$1+$2@> <$3> <+ $4> <$5>
-R<?> <$+ + $* @> <$*> <$- $-> <$*>
-			$: <$(access $5:$1@ $: ? $)> <$1+$2@> <$3> <$4 $5> <$6>
-R<?> <$+ + $* @> <$*> <+ $-> <$*>
-			$: <$(access $1@ $: ? $)> <$1+$2@> <$3> <+ $4> <$5>
-R<?> <$+> <$*> <$- $-> <$*>	$@ <$2> <$5>
-R<$+ <TMPF>> <$*> <$- $-> <$*>	$@ <<TMPF>> <$5>
-R<$+> <$*> <$- $-> <$*>		$@ <$1> <$5>
-
-######################################################################
-###  SearchList: search a list of items in the access map
-###	Parameters:
-###		<exact tag> $| <mark:address> <mark:address> ... <>
-###	where "exact" is either "+" or "!":
-###	<+ TAG>	lookup with and w/o tag
-###	<! TAG>	lookup with tag
-###	possible values for "mark" are:
-###		D: recursive host lookup (LookUpDomain)
-###		E: exact lookup, no modifications
-###		F: full lookup, try user+ext@domain and user@domain
-###		U: user lookup, try user+ext and user (input must have trailing @)
-###	return: <RHS of lookup> or <?> (not found)
-######################################################################
-
-# class with valid marks for SearchList
-C{Src}E F D U A
-SSearchList
-# just call the ruleset with the name of the tag... nice trick...
-R<$+> $| <$={Src}:$*> <$*>	$: <$1> $| <$4> $| $>$2 <$3> <?> <$1> <>
-R<$+> $| <> $| <?> <>		$@ <?>
-R<$+> $| <$+> $| <?> <>		$@ $>SearchList <$1> $| <$2>
-R<$+> $| <$*> $| <$+> <>	$@ <$3>
-R<$+> $| <$+>			$@ <$2>
 
 
 ######################################################################
@@ -1491,24 +1214,14 @@ SLocal_Relay_Auth
 ###	(done in server)
 ######################################################################
 Ssrv_features
-R$*		$: $>D <$&{client_name}> <?> <! "Srv_Features"> <>
-R<?>$*		$: $>A <$&{client_addr}> <?> <! "Srv_Features"> <>
-R<?>$*		$: <$(access "Srv_Features": $: ? $)>
-R<?>$*		$@ OK
-R<$* <TMPF>>$*	$#temp
-R<$+>$*		$# $1
+
 
 ######################################################################
 ###  try_tls: try to use STARTTLS?
 ###	(done in client)
 ######################################################################
 Stry_tls
-R$*		$: $>D <$&{server_name}> <?> <! "Try_TLS"> <>
-R<?>$*		$: $>A <$&{server_addr}> <?> <! "Try_TLS"> <>
-R<?>$*		$: <$(access "Try_TLS": $: ? $)>
-R<?>$*		$@ OK
-R<$* <TMPF>>$*	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<NO>$*		$#error $@ 5.7.1 $: "550 do not try TLS with " $&{server_name} " ["$&{server_addr}"]"
+
 
 ######################################################################
 ###  tls_rcpt: is connection with server "good" enough?
@@ -1518,15 +1231,7 @@ R<NO>$*		$#error $@ 5.7.1 $: "550 do not try TLS with " $&{server_name} " ["$&{s
 ###		$1: recipient
 ######################################################################
 Stls_rcpt
-R$*			$: $(macro {TLS_Name} $@ $&{server_name} $) $1
-R$+			$: <?> $>CanonAddr $1
-R<?> $+ < @ $+ . >	<?> $1 <@ $2 >
-R<?> $+ < @ $+ >	$: $1 <@ $2 > $| <F:$1@$2> <U:$1@> <D:$2> <E:>
-R<?> $+			$: $1 $| <U:$1@> <E:>
-R$* $| $+	$: $1 $| $>SearchList <! "TLS_Rcpt"> $| $2 <>
-R$* $| <?>	$@ OK
-R$* $| <$* <TMPF>>	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R$* $| <$+>	$@ $>"TLS_connection" $&{verify} $| <$2>
+
 
 ######################################################################
 ###  tls_client: is connection with client "good" enough?
@@ -1536,12 +1241,7 @@ R$* $| <$+>	$@ $>"TLS_connection" $&{verify} $| <$2>
 ###		${verify} $| (MAIL|STARTTLS)
 ######################################################################
 Stls_client
-R$*		$: $(macro {TLS_Name} $@ $&{client_name} $) $1
-R$* $| $*	$: $1 $| $>D <$&{client_name}> <?> <! "TLS_Clt"> <>
-R$* $| <?>$*	$: $1 $| $>A <$&{client_addr}> <?> <! "TLS_Clt"> <>
-R$* $| <?>$*	$: $1 $| <$(access "TLS_Clt": $: ? $)>
-R$* $| <$* <TMPF>>	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R$*		$@ $>"TLS_connection" $1
+R$* $| $*	$@ $>"TLS_connection" $1
 
 ######################################################################
 ###  tls_server: is connection with server "good" enough?
@@ -1551,88 +1251,17 @@ R$*		$@ $>"TLS_connection" $1
 ###		${verify}
 ######################################################################
 Stls_server
-R$*		$: $(macro {TLS_Name} $@ $&{server_name} $) $1
-R$*		$: $1 $| $>D <$&{server_name}> <?> <! "TLS_Srv"> <>
-R$* $| <?>$*	$: $1 $| $>A <$&{server_addr}> <?> <! "TLS_Srv"> <>
-R$* $| <?>$*	$: $1 $| <$(access "TLS_Srv": $: ? $)>
-R$* $| <$* <TMPF>>	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
 R$*		$@ $>"TLS_connection" $1
 
 ######################################################################
 ###  TLS_connection: is TLS connection "good" enough?
 ###
 ###	Parameters:
-###		${verify} $| <Requirement> [<>]
+###		${verify}
 ###		Requirement: RHS from access map, may be ? for none.
 ######################################################################
 STLS_connection
-R$* $| <$*>$*			$: $1 $| <$2>
-# create the appropriate error codes
-R$* $| <PERM + $={Tls} $*>	$: $1 $| <503:5.7.0> <$2 $3>
-R$* $| <TEMP + $={Tls} $*>	$: $1 $| <403:4.7.0> <$2 $3>
-R$* $| <$={Tls} $*>		$: $1 $| <403:4.7.0> <$2 $3>
-# deal with TLS handshake failures: abort
-RSOFTWARE $| <$-:$+> $* 	$#error $@ $2 $: $1 " TLS handshake failed."
-RSOFTWARE $| $* 		$#error $@ 4.7.0 $: "403 TLS handshake failed."
-# deal with TLS protocol errors: abort
-RPROTOCOL $| <$-:$+> $* 	$#error $@ $2 $: $1 " STARTTLS failed."
-RPROTOCOL $| $* 		$#error $@ 4.7.0 $: "403 STARTTLS failed."
-R$* $| <$*> <VERIFY>		$: <$2> <VERIFY> <> $1
-R$* $| <$*> <VERIFY + $+>	$: <$2> <VERIFY> <$3> $1
-R$* $| <$*> <$={Tls}:$->$*	$: <$2> <$3:$4> <> $1
-R$* $| <$*> <$={Tls}:$- + $+>$*	$: <$2> <$3:$4> <$5> $1
-R$* $| $*			$@ OK
-# authentication required: give appropriate error
-# other side did authenticate (via STARTTLS)
-R<$*><VERIFY> <> OK		$@ OK
-R<$*><VERIFY> <$+> OK		$: <$1> <REQ:0> <$2>
-R<$*><VERIFY:$-> <$*> OK	$: <$1> <REQ:$2> <$3>
-R<$*><ENCR:$-> <$*> $*		$: <$1> <REQ:$2> <$3>
-R<$-:$+><VERIFY $*> <$*>	$#error $@ $2 $: $1 " authentication required"
-R<$-:$+><VERIFY $*> <$*> FAIL	$#error $@ $2 $: $1 " authentication failed"
-R<$-:$+><VERIFY $*> <$*> NO	$#error $@ $2 $: $1 " not authenticated"
-R<$-:$+><VERIFY $*> <$*> NOT	$#error $@ $2 $: $1 " no authentication requested"
-R<$-:$+><VERIFY $*> <$*> NONE	$#error $@ $2 $: $1 " other side does not support STARTTLS"
-R<$-:$+><VERIFY $*> <$*> $+	$#error $@ $2 $: $1 " authentication failure " $4
-R<$*><REQ:$-> <$*>		$: <$1> <REQ:$2> <$3> $>max $&{cipher_bits} : $&{auth_ssf}
-R<$*><REQ:$-> <$*> $-		$: <$1> <$2:$4> <$3> $(arith l $@ $4 $@ $2 $)
-R<$-:$+><$-:$-> <$*> TRUE	$#error $@ $2 $: $1 " encryption too weak " $4 " less than " $3
-R<$-:$+><$-:$-> <$*> $*		$: <$1:$2 ++ $5>
-R<$-:$+ ++ >			$@ OK
-R<$-:$+ ++ $+ >			$: <$1:$2> <$3>
-R<$-:$+> < $+ ++ $+ >		<$1:$2> <$3> <$4>
-R<$-:$+> $+			$@ $>"TLS_req" $3 $| <$1:$2>
-
-######################################################################
-###  TLS_req: check additional TLS requirements
-###
-###	Parameters: [<list> <of> <req>] $| <$-:$+>
-###		$-: SMTP reply code
-###		$+: Enhanced Status Code
-######################################################################
-STLS_req
-R $| $+		$@ OK
-R<CN> $* $| <$+>		$: <CN:$&{TLS_Name}> $1 $| <$2>
-R<CN:$&{cn_subject}> $* $| <$+>		$@ $>"TLS_req" $1 $| <$2>
-R<CN:$+> $* $| <$-:$+>	$#error $@ $4 $: $3 " CN " $&{cn_subject} " does not match " $1
-R<CS:$&{cert_subject}> $* $| <$+>	$@ $>"TLS_req" $1 $| <$2>
-R<CS:$+> $* $| <$-:$+>	$#error $@ $4 $: $3 " Cert Subject " $&{cert_subject} " does not match " $1
-R<CI:$&{cert_issuer}> $* $| <$+>	$@ $>"TLS_req" $1 $| <$2>
-R<CI:$+> $* $| <$-:$+>	$#error $@ $4 $: $3 " Cert Issuer " $&{cert_issuer} " does not match " $1
-ROK			$@ OK
-
-######################################################################
-###  max: return the maximum of two values separated by :
-###
-###	Parameters: [$-]:[$-]
-######################################################################
-Smax
-R:		$: 0
-R:$-		$: $1
-R$-:		$: $1
-R$-:$-		$: $(arith l $@ $1 $@ $2 $) : $1 : $2
-RTRUE:$-:$-	$: $2
-R$-:$-:$-	$: $2
+RSOFTWARE	$#error $@ 4.7.0 $: "403 TLS handshake."
 
 
 ######################################################################
@@ -1643,16 +1272,6 @@ R$-:$-:$-	$: $2
 ######################################################################
 SRelayTLS
 # authenticated?
-R$*			$: <?> $&{verify}
-R<?> OK			$: OK		authenticated: continue
-R<?> $*			$@ NO		not authenticated
-R$*			$: $&{cert_issuer}
-R$+			$: $(access CERTISSUER:$1 $)
-RRELAY			$# RELAY
-RSUBJECT		$: <@> $&{cert_subject}
-R<@> $+			$: <@> $(access CERTSUBJECT:$1 $)
-R<@> RELAY		$# RELAY
-R$*			$: NO
 
 ######################################################################
 ###  authinfo: lookup authinfo in the access map
@@ -1662,63 +1281,18 @@ R$*			$: NO
 ###		$2: {server_addr}
 ######################################################################
 Sauthinfo
-R$*		$: $1 $| $>D <$&{server_name}> <?> <! AuthInfo> <>
-R$* $| <?>$*	$: $1 $| $>A <$&{server_addr}> <?> <! AuthInfo> <>
-R$* $| <?>$*	$: $1 $| <$(access AuthInfo: $: ? $)> <>
-R$* $| <?>$*	$@ no				no authinfo available
-R$* $| <$*> <>	$# $2
-
-######################################################################
-###  RateControl: 
-###	Parameters:	ignored
-###	return: $#error or OK
-######################################################################
-SRateControl
-R$*		$: <A:$&{client_addr}> <E:>
-R$+		$: $>SearchList <! ClientRate> $| $1 <>
-R<?>		$@ OK
-R<$* <TMPF>>	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<0>		$@ OK		no limit
-R<$+>		$: <$1> $| $(arith l $@ $1 $@ $&{client_rate} $)
-R<$+> $| TRUE	$#error $@ 4.3.2 $: 421 Connection rate limit exceeded.
-
-
-######################################################################
-###  ConnControl: 
-###	Parameters:	ignored
-###	return: $#error or OK
-######################################################################
-SConnControl
-R$*		$: <A:$&{client_addr}> <E:>
-R$+		$: $>SearchList <! ClientConn> $| $1 <>
-R<?>		$@ OK
-R<$* <TMPF>>	$#error $@ 4.3.0 $: "451 Temporary system failure. Please try again later."
-R<0>		$@ OK		no limit
-R<$+>		$: <$1> $| $(arith l $@ $1 $@ $&{client_connections} $)
-R<$+> $| TRUE	$#error $@ 4.3.2 $: 421 Too many open connections.
 
 
 
 
 
-######################################################################
-###  greet_pause: lookup pause time before 220 greeting
-###
-###	Parameters:
-###		$1: {client_name}
-###		$2: {client_addr}
-######################################################################
-SLocal_greet_pause
-Sgreet_pause
-R$*			$: <$1><?> $| $>"Local_greet_pause" $1
-R<$*><?> $| $#$*	$#$2
-R<$*><?> $| $*		$: $1
-R$+ $| $+		$: $>D < $1 > <?> <! GreetPause> < $2 >
-R   $| $+		$: $>A < $1 > <?> <! GreetPause> <>	empty client_name
-R<?> <$+>		$: $>A < $1 > <?> <! GreetPause> <>	no: another lookup
-R<?> <$*>		$# 1000
-R<$* <TMPF>> <$*>	$@
-R<$+> <$*>		$# $1
+
+
+
+SLocal_localaddr
+R$+			$: $>ParseRecipient $1
+R$* < @ $+ > $*		$#relay $@ ${MTAHost} $: $1 < @ $2 > $3
+R$*			$#relay $@ ${MTAHost} $: $1 < @ $j >
 #
 ######################################################################
 ######################################################################
@@ -1736,7 +1310,6 @@ R<$+> <$*>		$# $1
 #####
 ######################################################################
 ######################################################################
-
 
 
 ##################################################
@@ -1784,12 +1357,12 @@ R$* < @ *LOCAL* > $*	$: $1 < @ $j . > $2
 #
 SAddDomain
 
-Mlocal,		P=/usr/sbin/sensible-mda, F=lsDFMAw5:/|@qPn9S, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL,
-		T=DNS/RFC822/X-Unix,
-		A=sensible-mda $g $u $h ${client_addr}
-Mprog,		P=/usr/lib/sm.bin/smrsh, F=lsDFMoqeu9, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL, D=$z:/,
+Mlocal,		P=[IPC], F=lDFMuXkw5S, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL,
+		T=DNS/RFC822/SMTP,
+		A=TCP $h
+Mprog,		P=[IPC], F=lmDFMuXk5, S=EnvFromL/HdrFromL, R=EnvToL/HdrToL, D=$z:/,
 		T=X-Unix/X-Unix/X-Unix,
-		A=smrsh -c $u
+		A=TCP $h
 
 #####################################
 ###   SMTP Mailer specification   ###
@@ -1867,44 +1440,43 @@ SMasqRelay
 R$+			$: $>MasqSMTP $1
 R$+			$: $>MasqHdr $1
 
-Msmtp,		P=[IPC], F=mDFMuX, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
+Msmtp,		P=[IPC], F=mDFMuXk5, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
 		T=DNS/RFC822/SMTP,
 		A=TCP $h
-Mesmtp,		P=[IPC], F=mDFMuXa, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
+Mesmtp,		P=[IPC], F=mDFMuXak5, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
 		T=DNS/RFC822/SMTP,
 		A=TCP $h
-Msmtp8,		P=[IPC], F=mDFMuX8, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
+Msmtp8,		P=[IPC], F=mDFMuX8k5, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
 		T=DNS/RFC822/SMTP,
 		A=TCP $h
-Mdsmtp,		P=[IPC], F=mDFMuXa%, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
+Mdsmtp,		P=[IPC], F=mDFMuXa%k5, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP, E=\r\n, L=990,
 		T=DNS/RFC822/SMTP,
 		A=TCP $h
-Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2040,
+Mrelay,		P=[IPC], F=mDFMuXa8k, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2040,
 		T=DNS/RFC822/SMTP,
 		A=TCP $h
 
-
-### /etc/mail/sendmail.mc ###
+### /etc/mail/submit.mc ###
 # divert(-1)dnl
 # #-----------------------------------------------------------------------------
-# # $Sendmail: debproto.mc,v 8.14.4 2014-02-11 13:02:08 cowboy Exp $
+# # $Sendmail: submit.mc,v 8.14.4 2014-02-11 13:02:08 cowboy Exp $
 # #
-# # Copyright (c) 1998-2010 Richard Nelson.  All Rights Reserved.
+# # Copyright (c) 2000-2010 Richard Nelson.  All Rights Reserved.
 # #
-# # cf/debian/sendmail.mc.  Generated from sendmail.mc.in by configure.
+# # cf/debian/submit.mc.  Generated from submit.mc.in by configure.
 # #
-# # sendmail.mc prototype config file for building Sendmail 8.14.4
+# # submit.mc prototype config file for building Sendmail 8.14.4
 # #
 # # Note: the .in file supports 8.7.6 - 9.0.0, but the generated
 # #	file is customized to the version noted above.
 # #
 # # This file is used to configure Sendmail for use with Debian systems.
 # #
-# # If you modify this file, you will have to regenerate /etc/mail/sendmail.cf
+# # If you modify this file, you will have to regenerate /etc/mail/submit.cf
 # # by running this file through the m4 preprocessor via one of the following:
-# #	* make   (or make -C /etc/mail)
-# #	* sendmailconfig 
-# #	* m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
+# #	* make  (or make -C /etc/mail)
+# #	* sendmailconfig
+# #	* m4 /etc/mail/submit.mc > /etc/mail/submit.cf
 # # The first two options are preferred as they will also update other files
 # # that depend upon the contents of this file.
 # #
@@ -1914,90 +1486,31 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # #-----------------------------------------------------------------------------
 # divert(0)dnl
 # #
-# #   Copyright (c) 1998-2005 Richard Nelson.  All Rights Reserved.
+# #   Copyright (c) 2000-2002 Richard Nelson.  All Rights Reserved.
 # #
 # #  This file is used to configure Sendmail for use with Debian systems.
 # #
 # define(`_USE_ETC_MAIL_')dnl
 # include(`/usr/share/sendmail/cf/m4/cf.m4')dnl
-# VERSIONID(`$Id: sendmail.mc, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $')
+# VERSIONID(`$Id: submit.mc, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $')
 # OSTYPE(`debian')dnl
-# DOMAIN(`debian-mta')dnl
-# dnl # Items controlled by /etc/mail/sendmail.conf - DO NOT TOUCH HERE
-# undefine(`confHOST_STATUS_DIRECTORY')dnl        #DAEMON_HOSTSTATS=
-# dnl # Items controlled by /etc/mail/sendmail.conf - DO NOT TOUCH HERE
+# DOMAIN(`debian-msp')dnl
 # dnl #
-# dnl # General defines
+# dnl #---------------------------------------------------------------------
+# dnl # Masquerading information, if needed, should go here
+# dnl # You likely will not need this, as the MTA will do it
+# dnl #---------------------------------------------------------------------
+# dnl MASQUERADE_AS()dnl
+# dnl FEATURE(`masquerade_envelope')dnl
 # dnl #
-# dnl # SAFE_FILE_ENV: [undefined] If set, sendmail will do a chroot()
-# dnl #	into this directory before writing files.
-# dnl #	If *all* your user accounts are under /home then use that
-# dnl #	instead - it will prevent any writes outside of /home !
-# dnl #   define(`confSAFE_FILE_ENV',             `')dnl
+# dnl #---------------------------------------------------------------------
+# dnl # The real reason we're here: the FEATURE(msp)
+# dnl # NOTE WELL:  MSA (587) should have M=Ea, so we need to use stock 25
+# dnl #---------------------------------------------------------------------
+# FEATURE(`msp', `[127.0.0.1]', `25')dnl
 # dnl #
-# dnl # Daemon options - restrict to servicing LOCALHOST ONLY !!!
-# dnl # Remove `, Addr=' clauses to receive from any interface
-# dnl # If you want to support IPv6, switch the commented/uncommentd lines
+# dnl #---------------------------------------------------------------------
+# dnl # Some minor cleanup from FEATURE(msp)
+# dnl #---------------------------------------------------------------------
 # dnl #
-# FEATURE(`no_default_msa')dnl
-# dnl DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
-# DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
-# dnl DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
-# DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
-# dnl #
-# dnl # Be somewhat anal in what we allow
-# define(`confPRIVACY_FLAGS',dnl
-# `needmailhelo,needexpnhelo,needvrfyhelo,restrictqrun,restrictexpand,nobodyreturn,authwarnings')dnl
-# dnl #
-# dnl # Define connection throttling and window length
-# define(`confCONNECTION_RATE_THROTTLE', `15')dnl
-# define(`confCONNECTION_RATE_WINDOW_SIZE',`10m')dnl
-# dnl #
-# dnl # Features
-# dnl #
-# dnl # use /etc/mail/local-host-names
-# FEATURE(`use_cw_file')dnl
-# dnl #
-# dnl # The access db is the basis for most of sendmail's checking
-# FEATURE(`access_db', , `skip')dnl
-# dnl #
-# dnl # The greet_pause feature stops some automail bots - but check the
-# dnl # provided access db for details on excluding localhosts...
-# FEATURE(`greet_pause', `1000')dnl 1 seconds
-# dnl #
-# dnl # Delay_checks allows sender<->recipient checking
-# FEATURE(`delay_checks', `friend', `n')dnl
-# dnl #
-# dnl # If we get too many bad recipients, slow things down...
-# define(`confBAD_RCPT_THROTTLE',`3')dnl
-# dnl #
-# dnl # Stop connections that overflow our concurrent and time connection rates
-# FEATURE(`conncontrol', `nodelay', `terminate')dnl
-# FEATURE(`ratecontrol', `nodelay', `terminate')dnl
-# FEATURE(`masquerade_envelope')dnl
-# Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
-# FEATURE(`use_cw_file')dnl
-# FEATURE(`use_ct_file')dnl
-# FEATURE(`smrsh')dnl
-# 
-# dnl #
-# dnl # If you're on a dialup link, you should enable this - so sendmail
-# dnl # will not bring up the link (it will queue mail for later)
-# dnl define(`confCON_EXPENSIVE',`True')dnl
-# dnl #
-# dnl # Dialup/LAN connection overrides
-# dnl #
-# include(`/etc/mail/m4/dialup.m4')dnl
-# include(`/etc/mail/m4/provider.m4')dnl
-# dnl #
-# dnl # Default Mailer setup
-# dnl #
-# dnl # Dialup/LAN connection overrides
-# dnl #
-# MAILER_DEFINITIONS
-# MAILER(local)dnl
-# MAILER(smtp)dnl
-# 
-# LOCAL_CONFIG
-# ## Custom configurations below (will be preserved)
-# LOCAL_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+# dnl #---------------------------------------------------------------------

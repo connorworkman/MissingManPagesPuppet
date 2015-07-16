@@ -87,12 +87,6 @@ dnl #
 dnl # Stop connections that overflow our concurrent and time connection rates
 FEATURE(`conncontrol', `nodelay', `terminate')dnl
 FEATURE(`ratecontrol', `nodelay', `terminate')dnl
-FEATURE(`masquerade_envelope')dnl
-Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
-FEATURE(`use_cw_file')dnl
-FEATURE(`use_ct_file')dnl
-FEATURE(`smrsh')dnl
-
 dnl #
 dnl # If you're on a dialup link, you should enable this - so sendmail
 dnl # will not bring up the link (it will queue mail for later)
@@ -104,13 +98,7 @@ include(`/etc/mail/m4/dialup.m4')dnl
 include(`/etc/mail/m4/provider.m4')dnl
 dnl #
 dnl # Default Mailer setup
-dnl #
-dnl # Dialup/LAN connection overrides
-dnl #
 MAILER_DEFINITIONS
-MAILER(local)dnl
-MAILER(smtp)dnl
+MAILER(`local')dnl
+MAILER(`smtp')dnl
 
-LOCAL_CONFIG
-## Custom configurations below (will be preserved)
-LOCAL_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
