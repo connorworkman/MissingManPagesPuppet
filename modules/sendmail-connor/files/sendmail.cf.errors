@@ -1,0 +1,7 @@
+*** ERROR: FEATURE() should be before MAILER()
+*** ERROR: FEATURE() should be before MAILER()
+*** ERROR: FEATURE() should be before MAILER()
+*** ERROR: FEATURE() should be before MAILER()
+*** FEATURE(smrsh) must occur before MAILER(local)
+*** ERROR: MAILER(local) already included
+*** ERROR: MAILER(smtp) already included

@@ -21,8 +21,8 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
-##### built by root@ip-10-0-4-226 on Wed Jul 15 05:28:12 UTC 2015
-##### in /home/ubuntu
+##### built by root@ip-10-0-4-226 on Thu Jul 16 00:49:22 UTC 2015
+##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
 ######################################################################
@@ -71,6 +71,16 @@
 
 #####  $Id: ratecontrol.m4,v 1.5 2004/02/19 21:31:47 ca Exp $  #####
 
+
+#####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
+
+#####  $Id: use_cw_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
+
+
+#####  $Id: use_ct_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
+
+
+#####  $Id: smrsh.m4,v 8.14 1999/11/18 05:06:23 ca Exp $  #####
 
 
 #####  $Id: proto.m4,v 8.741 2009/12/11 00:04:53 ca Exp $  #####
@@ -159,6 +169,11 @@ DnMAILER-DAEMON
 
 # Access list database (for spam stomping)
 Kaccess hash -T<TMPF> /etc/mail/access
+
+
+Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
+
+## Custom configurations below (will be preserved)
 
 # Configuration version number
 DZ8.14.4/Debian-4.1ubuntu1
@@ -599,7 +614,7 @@ Pjunk=-100
 #####################
 
 # this is equivalent to setting class "t"
-#Ft/etc/mail/trusted-users %[^\#]
+Ft/etc/mail/trusted-users %[^\#]
 Troot
 Tdaemon
 Tuucp
@@ -957,7 +972,7 @@ R$* < @ *LOCAL* >	$@ $1 < @ $j . >
 ###################################################################
 
 SMasqEnv=94
-R$* < @ *LOCAL* > $*	$: $1 < @ $j . > $2
+R$+			$@ $>MasqHdr $1
 
 ###################################################################
 ###  Ruleset 98 -- local part of ruleset zero (can be null)	###
@@ -1869,6 +1884,8 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 		A=TCP $h
 
 
+
+
 ### /etc/mail/sendmail.mc ###
 # divert(-1)dnl
 # #-----------------------------------------------------------------------------
@@ -1974,3 +1991,19 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # MAILER(`local')dnl
 # MAILER(`smtp')dnl
 # 
+# LOCAL_CONFIG
+# FEATURE(`masquerade_envelope')dnl
+# LOCAL_CONFIG
+# Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
+# FEATURE(`use_cw_file')dnl
+# FEATURE(`use_ct_file')dnl
+# FEATURE(`smrsh')dnl
+# dnl #
+# dnl # Dialup/LAN connection overrides
+# dnl #
+# MAILER_DEFINITIONS
+# MAILER(local)dnl
+# MAILER(smtp)dnl
+# 
+# LOCAL_CONFIG
+# ## Custom configurations below (will be preserved)

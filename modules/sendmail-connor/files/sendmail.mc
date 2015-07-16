@@ -102,3 +102,19 @@ MAILER_DEFINITIONS
 MAILER(`local')dnl
 MAILER(`smtp')dnl
 
+LOCAL_CONFIG
+FEATURE(`masquerade_envelope')dnl
+LOCAL_CONFIG
+Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
+FEATURE(`use_cw_file')dnl
+FEATURE(`use_ct_file')dnl
+FEATURE(`smrsh')dnl
+dnl #
+dnl # Dialup/LAN connection overrides
+dnl #
+MAILER_DEFINITIONS
+MAILER(local)dnl
+MAILER(smtp)dnl
+
+LOCAL_CONFIG
+## Custom configurations below (will be preserved)
