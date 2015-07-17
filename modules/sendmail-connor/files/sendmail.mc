@@ -52,11 +52,11 @@ dnl # Daemon options - restrict to servicing LOCALHOST ONLY !!!
 dnl # Remove `, Addr=' clauses to receive from any interface
 dnl # If you want to support IPv6, switch the commented/uncommentd lines
 dnl #
-FEATURE(`no_default_msa')dnl
-dnl DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
-DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
-dnl DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
-DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
+dnl # FEATURE(`no_default_msa')dnl
+DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
+dnl # DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
+DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
+dnl # DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
 dnl #
 dnl # Be somewhat anal in what we allow
 define(`confPRIVACY_FLAGS',dnl
@@ -70,6 +70,12 @@ dnl # Features
 dnl #
 dnl # use /etc/mail/local-host-names
 FEATURE(`use_cw_file')dnl
+
+MASQUERADE_AS(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+FEATURE(`masquerade_envelope')dnl
+FEATURE(`masquerade_entire_domain')dnl
+MASQUERADE_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+
 dnl #
 dnl # The access db is the basis for most of sendmail's checking
 FEATURE(`access_db', , `skip')dnl
@@ -87,12 +93,6 @@ dnl #
 dnl # Stop connections that overflow our concurrent and time connection rates
 FEATURE(`conncontrol', `nodelay', `terminate')dnl
 FEATURE(`ratecontrol', `nodelay', `terminate')dnl
-FEATURE(`masquerade_envelope')dnl
-Cwec2-52-27-147-194.us-west-2.compute.amazonaws.com
-FEATURE(`use_cw_file')dnl
-FEATURE(`use_ct_file')dnl
-FEATURE(`smrsh')dnl
-
 dnl #
 dnl # If you're on a dialup link, you should enable this - so sendmail
 dnl # will not bring up the link (it will queue mail for later)
@@ -104,13 +104,8 @@ include(`/etc/mail/m4/dialup.m4')dnl
 include(`/etc/mail/m4/provider.m4')dnl
 dnl #
 dnl # Default Mailer setup
-dnl #
-dnl # Dialup/LAN connection overrides
-dnl #
 MAILER_DEFINITIONS
-MAILER(local)dnl
-MAILER(smtp)dnl
+MAILER(`local')dnl
+MAILER(`smtp')dnl
 
-LOCAL_CONFIG
-## Custom configurations below (will be preserved)
-LOCAL_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+dnl # Masquerading options

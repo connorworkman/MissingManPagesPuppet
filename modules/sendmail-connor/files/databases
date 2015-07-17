@@ -8,7 +8,7 @@
 #####		/usr/share/sendmail/parse_mc 8.14.4 2014-02-11 13:02:08 cowboy
 #####		Parse_mc.pm 8.14.4 2014-02-11 13:02:08 cowboy
 ##### by: ubuntu@ip-10-0-4-226
-##### on: Thu Jul 16 20:59:01 2015
+##### on: Thu Jul 16 23:40:53 2015
 ##### in: /etc/mail
 ##### input files:
 #####	/etc/mail/m4/provider.m4
@@ -75,5 +75,4 @@ include:-:-:/etc/mail/m4/provider.m4:-:
 sendmail.cf:m4:-:/etc/mail/sendmail.mc:-:
 submit.cf:m4:-:/etc/mail/submit.mc:-:
 tls:update_tls:-:/etc/mail/tls/starttls.m4:-:
-use_ct_file:-:-:/etc/mail/trusted-users:%[^\#]:
 use_cw_file:-:-:/etc/mail/local-host-names:%[^\#]:
