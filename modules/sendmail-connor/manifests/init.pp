@@ -64,7 +64,6 @@ class sendmail-connor {
 
 	file { "/etc/mail/local-host-names":
 		mode   => 444,
-		notify	=> Service["sendmail"],
 		owner  => "root",
 		group  => "root",
 		source => "puppet://modules/sendmail/local-host-names",
