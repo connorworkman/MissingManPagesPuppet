@@ -2,6 +2,9 @@ class sendmail-connor {
 	package {
 		"sendmail": ensure => installed;
 	}
+	package {
+		"sendmail-cf": ensure => installed;
+	}
 
 	file {"/etc/mail/sendmail.conf":
 		notify	=> Service["sendmail"],
