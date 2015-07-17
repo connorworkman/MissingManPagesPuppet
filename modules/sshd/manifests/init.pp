@@ -4,11 +4,14 @@ class sshd {
 	}
 
 	file { "/etc/ssh/sshd_config":
+		notify	=> Service["sshd"],
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
 		source	=> "puppet:///modules/sshd/sshd_config",
 		require => Package["openssh-server"],
+		content => template("ssh/sshd_config"),
+		
 	}
 
 	service { "ssh":

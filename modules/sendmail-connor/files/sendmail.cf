@@ -21,7 +21,11 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
+<<<<<<< HEAD
 ##### built by root@ip-10-0-4-226 on Thu Jul 16 23:40:53 UTC 2015
+=======
+##### built by root@ip-10-0-4-226 on Thu Jul 16 22:19:39 UTC 2015
+>>>>>>> eb35ce396354b874dcf752a76a75c915ace4736f
 ##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
@@ -1886,6 +1890,7 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 		A=TCP $h
 
 
+<<<<<<< HEAD
 ### /etc/mail/sendmail.mc ###
 # divert(-1)dnl
 # #-----------------------------------------------------------------------------
@@ -1998,3 +2003,5 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # MAILER(`smtp')dnl
 # 
 # dnl # Masquerading options
+=======
+>>>>>>> eb35ce396354b874dcf752a76a75c915ace4736f

@@ -21,7 +21,11 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
+<<<<<<< HEAD
 ##### built by root@ip-10-0-4-226 on Thu Jul 16 23:34:51 UTC 2015
+=======
+##### built by root@ip-10-0-4-226 on Thu Jul 16 22:07:37 UTC 2015
+>>>>>>> eb35ce396354b874dcf752a76a75c915ace4736f
 ##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
