@@ -50,7 +50,6 @@ class sendmail-connor {
 
 	file { "/etc/mail/sendmail.mc":
 		mode   => 444,
-		notify	=> Service["sendmail"],
 		owner  => "root",
 		group  => "smmsp",
 		source => "puppet://modules/sendmail/sendmail.mc",
