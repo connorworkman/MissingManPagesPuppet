@@ -21,11 +21,7 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
-<<<<<<< HEAD
-##### built by root@ip-10-0-4-226 on Thu Jul 16 23:40:53 UTC 2015
-=======
-##### built by root@ip-10-0-4-226 on Thu Jul 16 22:19:39 UTC 2015
->>>>>>> eb35ce396354b874dcf752a76a75c915ace4736f
+##### built by root@ip-10-0-4-226 on Sat Jul 18 04:36:41 UTC 2015
 ##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
@@ -59,13 +55,9 @@
 #####  $Id: debian-mta.m4, v 8.14.4-4.1ubuntu1 2014-02-11 13:02:08 cowboy Exp $  #####
 
 
+#####  $Id: no_default_msa.m4,v 8.2 2001/02/14 05:03:22 gshapiro Exp $  #####
+
 #####  $Id: use_cw_file.m4,v 8.11 2001/08/26 20:58:57 gshapiro Exp $  #####
-
-
-
-#####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
-
-#####  $Id: masquerade_entire_domain.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
 
 
 #####  $Id: access_db.m4,v 8.27 2006/07/06 21:10:10 ca Exp $  #####
@@ -79,6 +71,12 @@
 
 #####  $Id: ratecontrol.m4,v 1.5 2004/02/19 21:31:47 ca Exp $  #####
 
+
+#####  $Id: always_add_domain.m4,v 8.11 2000/09/12 22:00:53 ca Exp $  #####
+
+#####  $Id: allmasquerade.m4,v 8.13 2000/09/12 22:00:53 ca Exp $  #####
+
+#####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
 
 
 #####  $Id: proto.m4,v 8.741 2009/12/11 00:04:53 ca Exp $  #####
@@ -158,7 +156,6 @@ Kdequote dequote
 # class M: domains that should be converted to $M
 # class N: domains that should not be converted to $M
 #CL root
-C{M}ec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 # who I masquerade as (null for no masquerading) (see also $=M)
 DMec2-52-27-147-194.us-west-2.compute.amazonaws.com
@@ -273,9 +270,8 @@ O OldStyleHeaders=True
 
 # SMTP daemon options
 
-O DaemonPortOptions=Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1
-O DaemonPortOptions=Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1
-O DaemonPortOptions=Port=587, Name=MSA, M=E
+O DaemonPortOptions=Family=inet,  Name=MTA-v4, Port=smtp
+O DaemonPortOptions=Family=inet,  Name=MSP-v4, Port=submission, M=Ea
 
 # SMTP client options
 #O ClientPortOptions=Family=inet, Address=0.0.0.0
@@ -743,7 +739,7 @@ R$* $| $*			$: $2
 
 # local host aliases and pseudo-domains are always canonical
 R$* < @ $=w > $*		$: $1 < @ $2 . > $3
-R$* < @ $* $=M > $*		$: $1 < @ $2 $3 . > $4
+R$* < @ $=M > $*		$: $1 < @ $2 . > $3
 R$* < @ $* . . > $*		$1 < @ $2 . > $3
 
 
@@ -963,11 +959,11 @@ R$* < @ $* $=N . >	$@ $1 < @ $2 $3 . >
 
 # special case the users that should be exposed
 R$=E < @ *LOCAL* >	$@ $1 < @ $j . >		leave exposed
-R$=E < @ $* $=M . >	$@ $1 < @ $2 $3 . >
+R$=E < @ $=M . >	$@ $1 < @ $2 . >
 R$=E < @ $=w . >	$@ $1 < @ $2 . >
 
 # handle domain-specific masquerading
-R$* < @ $* $=M . > $*	$: $1 < @ $2 $3 . @ $M > $4	convert masqueraded doms
+R$* < @ $=M . > $*	$: $1 < @ $2 . @ $M > $3	convert masqueraded doms
 R$* < @ $=w . > $*	$: $1 < @ $2 . @ $M > $3
 R$* < @ *LOCAL* > $*	$: $1 < @ $j . @ $M > $2
 R$* < @ $+ @ > $*	$: $1 < @ $2 > $3		$M is null
@@ -1890,7 +1886,6 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 		A=TCP $h
 
 
-<<<<<<< HEAD
 ### /etc/mail/sendmail.mc ###
 # divert(-1)dnl
 # #-----------------------------------------------------------------------------
@@ -1946,11 +1941,11 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # dnl # Remove `, Addr=' clauses to receive from any interface
 # dnl # If you want to support IPv6, switch the commented/uncommentd lines
 # dnl #
-# dnl # FEATURE(`no_default_msa')dnl
-# DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
-# dnl # DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
-# DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
-# dnl # DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
+# FEATURE(`no_default_msa')dnl
+# dnl DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
+# DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp')dnl
+# dnl DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
+# DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea')dnl
 # dnl #
 # dnl # Be somewhat anal in what we allow
 # define(`confPRIVACY_FLAGS',dnl
@@ -1964,12 +1959,6 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # dnl #
 # dnl # use /etc/mail/local-host-names
 # FEATURE(`use_cw_file')dnl
-# 
-# MASQUERADE_AS(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
-# FEATURE(`masquerade_envelope')dnl
-# FEATURE(`masquerade_entire_domain')dnl
-# MASQUERADE_DOMAIN(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
-# 
 # dnl #
 # dnl # The access db is the basis for most of sendmail's checking
 # FEATURE(`access_db', , `skip')dnl
@@ -2003,5 +1992,7 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # MAILER(`smtp')dnl
 # 
 # dnl # Masquerading options
-=======
->>>>>>> eb35ce396354b874dcf752a76a75c915ace4736f
+# FEATURE(`always_add_domain')dnl
+# MASQUERADE_AS(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+# FEATURE(`allmasquerade')dnl
+# FEATURE(`masquerade_envelope')dnl
