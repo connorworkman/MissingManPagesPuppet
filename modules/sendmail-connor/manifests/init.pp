@@ -8,9 +8,9 @@ class sendmail-connor {
 
 	file {"/etc/mail/sendmail.conf":
 		notify	=> Service["sendmail"],
-		mode 	=> 444,
+		mode 	=> 644,
 		owner	=> "root",
-		group	=> "smmsp",
+		group	=> "root",
 		source	=> "puppet:///modules/sendmail-connor/sendmail.conf",
 		require	=> Package["sendmail"],
 	}
@@ -28,7 +28,7 @@ class sendmail-connor {
 	file {"/etc/mail/submit.cf":
 
 		notify	=> Service["sendmail"],
-		mode	=> 444,
+		mode	=> 644,
 		owner	=> "root",
 		group	=> "smmsp",
 		source	=> "puppet:///modules/sendmail-connor/submit.cf",
