@@ -4,7 +4,7 @@ class sshd {
 	}
 
 	file { "/etc/ssh/sshd_config":
-		notify	=> Service["sshd"],
+		notify	=> Service["ssh"],
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
@@ -13,7 +13,7 @@ class sshd {
 		
 	}
 
-	service { "sshd":
+	service { "ssh":
 		enable	=> true,
 		ensure	=> running,
 		require	=>	[ Package["openssh-server"],
