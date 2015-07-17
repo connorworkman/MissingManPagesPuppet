@@ -4,6 +4,7 @@ class sendmail-connor {
 	}
 
 	file {"/etc/mail/sendmail.conf":
+		notify	=> Service["sendmail"],
 		mode 	=> 444,
 		owner	=> "root",
 		group	=> "smmsp",
@@ -12,6 +13,7 @@ class sendmail-connor {
 	}
 
 	file {"/etc/mail/sendmail.cf":
+		notify	=> Service["sendmail"],
 		mode	=> 444,
 		owner	=> "root",
 		group	=> "smmsp",
@@ -21,6 +23,8 @@ class sendmail-connor {
 
 
 	file {"/etc/mail/submit.cf":
+
+		notify	=> Service["sendmail"],
 		mode	=> 444,
 		owner	=> "root",
 		group	=> "smmsp",
@@ -30,6 +34,7 @@ class sendmail-connor {
 
 	file {"/etc/mail/submit.mc":
 		mode	=> 444,
+		notify	=> Service["sendmail"],
 		owner	=> "root",
 		group	=> "smmsp",
 		source	=> "puppet:///modules/sendmail-connor/submit.mc",
@@ -45,6 +50,7 @@ class sendmail-connor {
 
 	file { "/etc/mail/sendmail.mc":
 		mode   => 444,
+		notify	=> Service["sendmail"],
 		owner  => "root",
 		group  => "smmsp",
 		source => "puppet://modules/sendmail/sendmail.mc",
@@ -59,6 +65,7 @@ class sendmail-connor {
 
 	file { "/etc/mail/local-host-names":
 		mode   => 444,
+		notify	=> Service["sendmail"],
 		owner  => "root",
 		group  => "root",
 		source => "puppet://modules/sendmail/local-host-names",
