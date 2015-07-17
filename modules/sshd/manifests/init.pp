@@ -10,7 +10,6 @@ class sshd {
 		group	=> "root",
 		source	=> "puppet:///modules/sshd/sshd_config",
 		require => Package["openssh-server"],
-		content => template("ssh/sshd_config"),
 		
 	}
 
