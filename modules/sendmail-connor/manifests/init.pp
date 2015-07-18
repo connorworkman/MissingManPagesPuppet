@@ -25,7 +25,7 @@ class sendmail-connor {
 		mode   => 644,
 		owner  => "root",
 		group  => "smmsp",
-		source => "puppet://modules/sendmail/sendmail.mc",
+		source => "puppet://modules/sendmail-connor/sendmail.mc",
 		notify => [ Exec["/usr/bin/make -C /etc/mail"],
 			    Service["sendmail"] ],
 	}
@@ -39,7 +39,7 @@ class sendmail-connor {
 		mode   => 644,
 		owner  => "root",
 		group  => "smmsp",
-		source => "puppet://modules/sendmail/local-host-names",
+		source => "puppet://modules/sendmail-connor/local-host-names",
 		notify => Service["sendmail"],
 	}
 
