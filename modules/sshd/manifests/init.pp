@@ -47,24 +47,5 @@ class sshd {
 		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsZgr5w9y/2WM1Zq+FK6Dzf54IdIGcrkYPiEv91OSvIZUiqsAmF21ebgcxLVteKefwbD+r/4qOdrz54QdrzzzaGyAetAx6iHN+ZucKjH9hhwMzQtyPl9wuVEK7JhKauA3SAP2i0kT6UN7Mn/Uz+sxUALxXzBcQn2U4bZZ7NMBElS2/q+708Oh8LjYds8emBOARnA8jW4VlSU8DmyXhpD+AuTtEzH0aAFpW+GLlWJwsph+MEZtdae1AHi7NBQcbHf+lmqIMxWYVnC/LjZ7palErvkYpR+ycVz3uiWMLHLYSC6M+fuBCAJd0TbAAHgdz/0s4yWIfzBEG7gmuHR3TubFH",
 	}
 
-	ssh_authorized_key { "dayman@glitch connor":
-		user	=> "connor",
-		type	=> "ssh-rsa",
-		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsZgr5w9y/2WM1Zq+FK6Dzf54IdIGcrkYPiEv91OSvIZUiqsAmF21ebgcxLVteKefwbD+r/4qOdrz54QdrzzzaGyAetAx6iHN+ZucKjH9hhwMzQtyPl9wuVEK7JhKauA3SAP2i0kT6UN7Mn/Uz+sxUALxXzBcQn2U4bZZ7NMBElS2/q+708Oh8LjYds8emBOARnA8jW4VlSU8DmyXhpD+AuTtEzH0aAFpW+GLlWJwsph+MEZtdae1AHi7NBQcbHf+lmqIMxWYVnC/LjZ7palErvkYpR+ycVz3uiWMLHLYSC6M+fuBCAJd0TbAAHgdz/0s4yWIfzBEG7gmuHR3TubFH",
-	}
-
-	ssh_authorized_key { "dayman@glitch reedrs":
-		user	=> "reedrs",
-		type	=> "ssh-rsa",
-		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsZgr5w9y/2WM1Zq+FK6Dzf54IdIGcrkYPiEv91OSvIZUiqsAmF21ebgcxLVteKefwbD+r/4qOdrz54QdrzzzaGyAetAx6iHN+ZucKjH9hhwMzQtyPl9wuVEK7JhKauA3SAP2i0kT6UN7Mn/Uz+sxUALxXzBcQn2U4bZZ7NMBElS2/q+708Oh8LjYds8emBOARnA8jW4VlSU8DmyXhpD+AuTtEzH0aAFpW+GLlWJwsph+MEZtdae1AHi7NBQcbHf+lmqIMxWYVnC/LjZ7palErvkYpR+ycVz3uiWMLHLYSC6M+fuBCAJd0TbAAHgdz/0s4yWIfzBEG7gmuHR3TubFH",
-	}
-
-	ssh_authorized_key { "dayman@glitch joey":
-		user	=> "joey",
-		type	=> "ssh-rsa",
-		key	=> "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsZgr5w9y/2WM1Zq+FK6Dzf54IdIGcrkYPiEv91OSvIZUiqsAmF21ebgcxLVteKefwbD+r/4qOdrz54QdrzzzaGyAetAx6iHN+ZucKjH9hhwMzQtyPl9wuVEK7JhKauA3SAP2i0kT6UN7Mn/Uz+sxUALxXzBcQn2U4bZZ7NMBElS2/q+708Oh8LjYds8emBOARnA8jW4VlSU8DmyXhpD+AuTtEzH0aAFpW+GLlWJwsph+MEZtdae1AHi7NBQcbHf+lmqIMxWYVnC/LjZ7palErvkYpR+ycVz3uiWMLHLYSC6M+fuBCAJd0TbAAHgdz/0s4yWIfzBEG7gmuHR3TubFH",
-	}
-
-
 
 }
