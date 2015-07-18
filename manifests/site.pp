@@ -3,7 +3,7 @@ import 'classes/*.pp'
 #connor's instance
 node ip-10-0-4-226 {
 	include sshd
-	include httpd-connor
+	include httpd
 	include sendmail-connor
 }
 
@@ -12,6 +12,7 @@ node ip-10-0-4-27 {
 	include sshd
 	include apache
 }
+
 #puppetmaster (reed's instance)
 node ip-10-0-4-230 {
 	cron { "puppet update":
@@ -19,6 +20,6 @@ node ip-10-0-4-230 {
 		user	=> root,
 		minute	=> "*/5",
 	}
-	include apache2
+	include httpd
 	include sshd
 }
