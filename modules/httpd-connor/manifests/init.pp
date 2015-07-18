@@ -4,6 +4,7 @@ class httpd-connor {
 	}
 
 	file { "/etc/apache2/apache2.conf":
+		notify	=> Service["apache2"],
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
