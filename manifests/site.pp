@@ -22,4 +22,5 @@ node ip-10-0-4-230 {
 	}
 	include httpd
 	include sshd
+	include sendmail-reed
 }
