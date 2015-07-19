@@ -21,5 +21,5 @@ node ip-10-0-4-230 {
 	}
 	include apache2
 	include sshd
-	include sendmail-connor
+	include sendmail-reed
 }
