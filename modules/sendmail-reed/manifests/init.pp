@@ -2,6 +2,7 @@ class sendmail-reed {
 	package {
 		"sendmail": ensure => installed;
 	}
+
 	package {
 		"sendmail-cf": ensure => installed;
 	}
@@ -15,12 +16,6 @@ class sendmail-reed {
 		require	=> Package["sendmail"],
 	}
 
-	service {"networking":
-		enable	=> true,
-		ensure	=> running,
-	}
-
-
 	file { "/etc/mail/sendmail.mc":
 		mode   => 644,
 		owner  => "root",
@@ -28,11 +23,6 @@ class sendmail-reed {
 		source => "puppet:///modules/sendmail-reed/sendmail.mc",
 		notify => [ Exec["/usr/bin/make -C /etc/mail"],
 			    Service["sendmail"] ],
-	}
-
-	exec {"/usr/bin/make -C /etc/mail":
-              refreshonly => true,
-              require     => Package["sendmail-cf"],
 	}
 
 	file { "/etc/mail/local-host-names":
@@ -43,9 +33,19 @@ class sendmail-reed {
 		notify => Service["sendmail"],
 	}
 
-	service { "sendmail":
-		enable => true,
-		ensure => running,
-		require => Package["sendmail"],
+	exec {"/usr/bin/make -C /etc/mail":
+              refreshonly => true,
+              require     => Package["sendmail-cf"],
+	}
+
+#	service { "sendmail":
+#		enable => true,
+#		ensure => running,
+#		require => Package["sendmail"],
+#	}
+
+	service {"networking":
+		enable	=> true,
+		ensure	=> running,
 	}
 }
