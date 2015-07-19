@@ -41,6 +41,7 @@ class sendmail-reed {
 	service { "sendmail":
 		enable => true,
 		ensure => running,
+		hasstatus => false,
 		require => Package["sendmail"],
 	}
 
