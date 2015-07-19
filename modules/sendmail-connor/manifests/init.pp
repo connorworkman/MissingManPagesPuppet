@@ -47,5 +47,6 @@ class sendmail-connor {
 		enable => true,
 		ensure => running,
 		require => Package["sendmail"],
+		subscribe => [ File["/etc/mail/local-host-names"], File["/etc/mail/sendmail.cf"], File["/etc/mail/sendmail.mc"] ],
 	}
 }
