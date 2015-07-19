@@ -8,7 +8,7 @@ class sendmail-reed {
 	}
 
 	file {"/etc/mail/sendmail.conf":
-		notify	=> Service["sendmail"],
+#		notify	=> Service["sendmail"],
 		mode 	=> 644,
 		owner	=> "root",
 		group	=> "root",
@@ -21,8 +21,8 @@ class sendmail-reed {
 		owner  => "root",
 		group  => "smmsp",
 		source => "puppet:///modules/sendmail-reed/sendmail.mc",
-		notify => [ Exec["/usr/bin/make -C /etc/mail"],
-			    Service["sendmail"] ],
+#		notify => [ Exec["/usr/bin/make -C /etc/mail"],
+#			    Service["sendmail"] ],
 	}
 
 	file { "/etc/mail/local-host-names":
@@ -30,7 +30,7 @@ class sendmail-reed {
 		owner  => "root",
 		group  => "smmsp",
 		source => "puppet:///modules/sendmail-reed/local-host-names",
-		notify => Service["sendmail"],
+#		notify => Service["sendmail"],
 	}
 
 	exec {"/usr/bin/make -C /etc/mail":
