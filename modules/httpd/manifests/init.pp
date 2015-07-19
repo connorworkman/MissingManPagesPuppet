@@ -1,9 +1,10 @@
-class httpd-connor {
+class httpd {
 	package {
 		"apache2": ensure => installed;
 	}
 
 	file { "/etc/apache2/apache2.conf":
+		notify	=> Service["apache2"],
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",

@@ -21,8 +21,8 @@
 #####
 #####		SENDMAIL CONFIGURATION FILE
 #####
-##### built by root@ip-10-0-4-230 on Wed Jul 15 21:59:56 UTC 2015
-##### in /home/reedrs
+##### built by root@ip-10-0-4-226 on Sat Jul 18 04:36:41 UTC 2015
+##### in /etc/mail
 ##### using /usr/share/sendmail/cf/ as configuration include directory
 #####
 ######################################################################
@@ -71,6 +71,12 @@
 
 #####  $Id: ratecontrol.m4,v 1.5 2004/02/19 21:31:47 ca Exp $  #####
 
+
+#####  $Id: always_add_domain.m4,v 8.11 2000/09/12 22:00:53 ca Exp $  #####
+
+#####  $Id: allmasquerade.m4,v 8.13 2000/09/12 22:00:53 ca Exp $  #####
+
+#####  $Id: masquerade_envelope.m4,v 8.9 1999/02/07 07:26:10 gshapiro Exp $  #####
 
 
 #####  $Id: proto.m4,v 8.741 2009/12/11 00:04:53 ca Exp $  #####
@@ -151,7 +157,8 @@ Kdequote dequote
 # class N: domains that should not be converted to $M
 #CL root
 
-
+# who I masquerade as (null for no masquerading) (see also $=M)
+DMec2-52-27-147-194.us-west-2.compute.amazonaws.com
 
 # my name for error messages
 DnMAILER-DAEMON
@@ -263,8 +270,8 @@ O OldStyleHeaders=True
 
 # SMTP daemon options
 
-O DaemonPortOptions=Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1
-O DaemonPortOptions=Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1
+O DaemonPortOptions=Family=inet,  Name=MTA-v4, Port=smtp
+O DaemonPortOptions=Family=inet,  Name=MSP-v4, Port=submission, M=Ea
 
 # SMTP client options
 #O ClientPortOptions=Family=inet, Address=0.0.0.0
@@ -950,14 +957,24 @@ SMasqHdr=93
 # do not masquerade anything in class N
 R$* < @ $* $=N . >	$@ $1 < @ $2 $3 . >
 
-R$* < @ *LOCAL* >	$@ $1 < @ $j . >
+# special case the users that should be exposed
+R$=E < @ *LOCAL* >	$@ $1 < @ $j . >		leave exposed
+R$=E < @ $=M . >	$@ $1 < @ $2 . >
+R$=E < @ $=w . >	$@ $1 < @ $2 . >
+
+# handle domain-specific masquerading
+R$* < @ $=M . > $*	$: $1 < @ $2 . @ $M > $3	convert masqueraded doms
+R$* < @ $=w . > $*	$: $1 < @ $2 . @ $M > $3
+R$* < @ *LOCAL* > $*	$: $1 < @ $j . @ $M > $2
+R$* < @ $+ @ > $*	$: $1 < @ $2 > $3		$M is null
+R$* < @ $+ @ $+ > $*	$: $1 < @ $3 . > $4		$M is not null
 
 ###################################################################
 ###  Ruleset 94 -- convert envelope names to masqueraded form	###
 ###################################################################
 
 SMasqEnv=94
-R$* < @ *LOCAL* > $*	$: $1 < @ $j . > $2
+R$+			$@ $>MasqHdr $1
 
 ###################################################################
 ###  Ruleset 98 -- local part of ruleset zero (can be null)	###
@@ -1926,9 +1943,9 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # dnl #
 # FEATURE(`no_default_msa')dnl
 # dnl DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
-# DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
+# DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp')dnl
 # dnl DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
-# DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
+# DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea')dnl
 # dnl #
 # dnl # Be somewhat anal in what we allow
 # define(`confPRIVACY_FLAGS',dnl
@@ -1974,3 +1991,8 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 # MAILER(`local')dnl
 # MAILER(`smtp')dnl
 # 
+# dnl # Masquerading options
+# FEATURE(`always_add_domain')dnl
+# MASQUERADE_AS(`ec2-52-27-147-194.us-west-2.compute.amazonaws.com')dnl
+# FEATURE(`allmasquerade')dnl
+# FEATURE(`masquerade_envelope')dnl

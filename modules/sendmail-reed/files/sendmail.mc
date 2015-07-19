@@ -54,9 +54,9 @@ dnl # If you want to support IPv6, switch the commented/uncommentd lines
 dnl #
 FEATURE(`no_default_msa')dnl
 dnl DAEMON_OPTIONS(`Family=inet6, Name=MTA-v6, Port=smtp, Addr=::1')dnl
-DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1')dnl
+DAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp')dnl
 dnl DAEMON_OPTIONS(`Family=inet6, Name=MSP-v6, Port=submission, M=Ea, Addr=::1')dnl
-DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea, Addr=127.0.0.1')dnl
+DAEMON_OPTIONS(`Family=inet,  Name=MSP-v4, Port=submission, M=Ea')dnl
 dnl #
 dnl # Be somewhat anal in what we allow
 define(`confPRIVACY_FLAGS',dnl
@@ -102,3 +102,8 @@ MAILER_DEFINITIONS
 MAILER(`local')dnl
 MAILER(`smtp')dnl
 
+dnl # Masquerading options
+FEATURE(`always_add_domain')dnl
+MASQUERADE_AS(`ec2-52-26-200-100.us-west-2.compute.amazonaws.com')dnl
+FEATURE(`allmasquerade')dnl
+FEATURE(`masquerade_envelope')dnl
