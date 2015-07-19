@@ -1,3 +1,4 @@
+# sendmail-connor/files/sendmail.mc is managed by puppet
 divert(-1)dnl
 #-----------------------------------------------------------------------------
 # $Sendmail: debproto.mc,v 8.14.4 2014-02-11 13:02:08 cowboy Exp $
