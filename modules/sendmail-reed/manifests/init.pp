@@ -7,6 +7,10 @@ class sendmail-reed {
 		"sendmail-cf": ensure => installed;
 	}
 
+	package {
+		"mailutils": ensure => installed;
+	}
+
 	file {"/etc/mail/sendmail.conf":
 		notify	=> Service["sendmail"],
 		mode 	=> 644,
@@ -41,6 +45,7 @@ class sendmail-reed {
 	service { "sendmail":
 		enable => true,
 		ensure => running,
+		# Puppet doesn't detect when sendmail isn't running with the normal method; this forces it to check itself whether a sendmail process is running.
 		hasstatus => false,
 		require => Package["sendmail"],
 	}
