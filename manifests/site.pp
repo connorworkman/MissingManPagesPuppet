@@ -3,7 +3,7 @@ import 'classes/*.pp'
 #connor's instance
 node ip-10-0-4-226 {
 	include sshd
-	include lighttpd-reed
+	include httpd
 	include sendmail-connor
 }
 
