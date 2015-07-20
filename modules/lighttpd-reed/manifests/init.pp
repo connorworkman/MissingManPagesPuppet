@@ -36,6 +36,20 @@ class lighttpd-reed {
 		require => Package["lighttpd"],
 	}
 
+	file { "/etc/lighttpd/conf-enabled/10-userdir.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/10-userdir.conf",
+		require => Package["lighttpd"],
+	}
+
+	file { "/etc/lighttpd/conf-enabled/10-accesslog.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/10-accesslog.conf",
+		require => Package["lighttpd"],
+	}
+
 	service { "lighttpd":
 		enable	=> true,
 		ensure	=> running,
