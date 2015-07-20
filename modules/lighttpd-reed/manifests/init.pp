@@ -28,7 +28,7 @@ class lighttpd-reed {
 		require => Package["lighttpd"],
 	}
 
-	file { "/etc/lighttpd/cat.png":
+	file { "/var/www/cat.png":
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
