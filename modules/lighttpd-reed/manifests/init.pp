@@ -8,7 +8,7 @@ class lighttpd-reed {
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/lighttpd.conf",
+		source	=> "puppet:///modules/lighttpd-reed/lighttpd.conf",
 		require => Package["lighttpd"],
 	}
 
@@ -16,7 +16,7 @@ class lighttpd-reed {
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/index.html",
+		source	=> "puppet:///modules/lighttpd-reed/index.html",
 		require => Package["lighttpd"],
 	}
 
@@ -24,7 +24,7 @@ class lighttpd-reed {
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/otherfile.html",
+		source	=> "puppet:///modules/lighttpd-reed/otherfile.html",
 		require => Package["lighttpd"],
 	}
 
@@ -32,7 +32,7 @@ class lighttpd-reed {
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/cat.png",
+		source	=> "puppet:///modules/lighttpd-reed/cat.png",
 		require => Package["lighttpd"],
 	}
 
