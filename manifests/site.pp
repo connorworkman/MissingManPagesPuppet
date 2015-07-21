@@ -3,14 +3,14 @@ import 'classes/*.pp'
 #connor's instance
 node ip-10-0-4-226 {
 	include sshd
-	include lighttpd-reed
+	include lighttpd
 	include sendmail-connor
 }
 
 #joey's instance
 node ip-10-0-4-27 {
 	include sshd
-	include lighttpd-reed
+	include lighttpd
 }
 
 #puppetmaster (reed's instance)
