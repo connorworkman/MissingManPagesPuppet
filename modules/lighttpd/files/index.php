@@ -18,6 +18,11 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
 
 <?php $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 echo $hostname;
+if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal") {
+        echo "This is served from Connor's instance.";
+} else {
+    echo "This is served from Joey's instance.";
+}
 ?>
 
 </font>
