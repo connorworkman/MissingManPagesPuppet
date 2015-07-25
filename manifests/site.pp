@@ -20,7 +20,6 @@ node ip-10-0-4-230 {
 		user	=> root,
 		minute	=> "*/5",
 	}
-#	include httpd
 	include sshd
 	include sendmail-reed
 	include lighttpd-reed
