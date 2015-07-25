@@ -19,10 +19,12 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
 echo "\n";
 if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal") {
         echo $hostname;
-        echo "\nThis page is currently being served from Connor's instance.";
+        echo "\n";
+        echo "This page is currently being served from Connor's instance.";
 } else {
     echo $hostname;    
-    echo "\nThis page is currently being served from Joey's instance.";
+    echo "\n";
+    echo "This page is currently being served from Joey's instance.";
 }
 ?>
 
