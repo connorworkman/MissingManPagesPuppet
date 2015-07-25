@@ -16,14 +16,14 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
  <p><img src="./mmp.gif" alt="MMP"></p>
 
 <?php $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-echo "\n";
+echo "<br>";
 if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal") {
         echo $hostname;
-        echo "\n";
+        echo "<br>";
         echo "This page is currently being served from Connor's instance.";
 } else {
     echo $hostname;    
-    echo "\n";
+    echo "<br>";
     echo "This page is currently being served from Joey's instance.";
 }
 ?>
