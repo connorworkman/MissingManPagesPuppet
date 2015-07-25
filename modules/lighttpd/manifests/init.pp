@@ -17,7 +17,7 @@ class lighttpd {
 		owner	=> "root",
 		group	=> "root",
 		source	=> "puppet:///modules/lighttpd/index.html",
-		require => Package["lighttpd"],
+	light	require => Package["lighttpd"],
 	}
 
 	file { "/var/www/otherfile.html":
@@ -57,6 +57,21 @@ class lighttpd {
 		target	=> "/etc/lighttpd/conf-available/10-accesslog.conf",
 		require => Package["lighttpd"],
 	}
+
+    file { "/etc/lighttpd/conf-enabled/10-fastcgi.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/10-fastcgi.conf",
+		require => Package["lighttpd"],
+	}
+
+    file { "/etc/lighttpd/conf-enabled/15-fastcgi-php.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/15-fastcgi-php.conf",
+		require => Package["lighttpd"],
+	}
+
 
 	service { "lighttpd":
 		enable	=> true,
