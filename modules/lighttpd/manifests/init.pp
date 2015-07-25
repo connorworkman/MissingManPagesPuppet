@@ -37,11 +37,11 @@ class lighttpd {
 		require => Package["lighttpd"],
 	}
 
-	file { "/var/www/test.php":
+	file { "/var/www/index.php":
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/test.php",
+		source	=> "puppet:///modules/lighttpd/index.php",
 		require => Package["lighttpd"],
 	}
 
