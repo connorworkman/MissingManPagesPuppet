@@ -1,6 +1,7 @@
 class lighttpd {
 	package {
 		"lighttpd": ensure => installed;
+        "php5-cgi": ensure => installed;
 	}
 
 	file { "/etc/lighttpd/lighttpd.conf":
