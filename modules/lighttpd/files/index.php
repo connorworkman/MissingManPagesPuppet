@@ -14,14 +14,13 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
 <font face="arial">
  <p>This page may be served by either Joey's or Connor's machine.</p>
  <p><img src="./mmp.gif" alt="MMP"></p>
- <a href="./test.php">Click here to find out which instance is serving this page.</a>
 
 <?php $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 echo $hostname;
-if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal") {
-        echo "This is served from Connor's instance.";
+if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal\n") {
+        echo "This is served from Connor's instance.\n";
 } else {
-    echo "This is served from Joey's instance.";
+    echo "This is served from Joey's instance.\n";
 }
 ?>
 
