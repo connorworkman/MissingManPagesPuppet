@@ -36,6 +36,14 @@ class lighttpd {
 		require => Package["lighttpd"],
 	}
 
+	file { "/var/www/test.php":
+		mode	=> 644,
+		owner	=> "root",
+		group	=> "root",
+		source	=> "puppet:///modules/lighttpd/test.php",
+		require => Package["lighttpd"],
+	}
+
 	file { "/etc/lighttpd/conf-enabled/10-userdir.conf":
 		notify	=> Service["lighttpd"],
 		ensure	=> link,
