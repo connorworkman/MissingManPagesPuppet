@@ -17,7 +17,7 @@ class lighttpd {
 		owner	=> "root",
 		group	=> "root",
 		source	=> "puppet:///modules/lighttpd/index.html",
-	light	require => Package["lighttpd"],
+		require => Package["lighttpd"],
 	}
 
 	file { "/var/www/otherfile.html":
