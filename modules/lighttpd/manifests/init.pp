@@ -16,12 +16,12 @@ class lighttpd {
     file { "/var/www/":
         ensure => directory,
         recurse => true,
-        purge   => false,
+        purge   => true,
         force   => true,
         owner   => "root",
         group   => "root",
         mode    => 0644,
-        source  => "puppet:///modules/lighttpd/",
+        source  => "puppet:///modules/lighttpd/site_content/",
     }
 
 	file { "/etc/lighttpd/conf-enabled/10-userdir.conf":
