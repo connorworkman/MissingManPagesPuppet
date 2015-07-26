@@ -15,7 +15,7 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
  <p>This page may be served by either Joey's or Connor's machine.</p>
  <p><img src="./mmp.gif" alt="MMP"></p>
 <?php
-$hostname = HttpRequest::getResponseHeader(["X-Proxy"]);
+$hostname = getResponseHeader(["X-Proxy"]);
 echo $hostname;
 echo "<br>";
 ?>
