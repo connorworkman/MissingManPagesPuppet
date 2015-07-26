@@ -21,7 +21,7 @@ class lighttpd {
         owner   => "root",
         group   => "root",
         mode    => 0644,
-        source  => "puppet:///modules/lighttpd/files",
+        source  => "puppet:///modules/lighttpd/",
     }
 
 	file { "/etc/lighttpd/conf-enabled/10-userdir.conf":
