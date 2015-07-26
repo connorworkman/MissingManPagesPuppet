@@ -63,7 +63,7 @@ class lighttpd-reed {
 		enable => false,
 		ensure => stopped
 		}
-}
+
 
     file { "/etc/lighttpd/conf-enabled/10-fastcgi.conf":
 		notify	=> Service["lighttpd"],
@@ -78,4 +78,4 @@ class lighttpd-reed {
 		target	=> "/etc/lighttpd/conf-available/15-fastcgi-php.conf",
 		require => Package["lighttpd"],
 	}
-
+}
