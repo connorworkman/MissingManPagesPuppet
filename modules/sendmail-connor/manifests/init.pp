@@ -12,7 +12,7 @@ class sendmail-connor {
 		owner	=> "root",
 		group	=> "root",
 		source	=> "puppet:///modules/sendmail-connor/sendmail.conf",
-		require	=> Package["sendmail"],
+		require	=> Package["sendmail"], #consider adding multiple package requirements here and testing sendmail further
 	}
 
 	service {"networking":
