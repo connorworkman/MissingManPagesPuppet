@@ -1,6 +1,7 @@
 class lighttpd-reed {
 	package {
 		"lighttpd": ensure => installed;
+        "php5-cgi": ensure => installed;
 	}
 
 	file { "/etc/lighttpd/lighttpd.conf":
@@ -63,3 +64,18 @@ class lighttpd-reed {
 		ensure => stopped
 		}
 }
+
+    file { "/etc/lighttpd/conf-enabled/10-fastcgi.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/10-fastcgi.conf",
+		require => Package["lighttpd"],
+	}
+
+    file { "/etc/lighttpd/conf-enabled/15-fastcgi-php.conf":
+		notify	=> Service["lighttpd"],
+		ensure	=> link,
+		target	=> "/etc/lighttpd/conf-available/15-fastcgi-php.conf",
+		require => Package["lighttpd"],
+	}
+
