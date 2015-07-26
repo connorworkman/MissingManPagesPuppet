@@ -3,7 +3,7 @@ class lighttpd {
 		"lighttpd": ensure => installed;
         "php5-cgi": ensure => installed;
 	}
-
+    
 	file { "/etc/lighttpd/lighttpd.conf":
 		notify	=> Service["lighttpd"],
 		mode	=> 644,
@@ -13,37 +13,16 @@ class lighttpd {
 		require => Package["lighttpd"],
 	}
 
-	file { "/var/www/index.html":
-		mode	=> 644,
-		owner	=> "root",
-		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/index.html",
-		require => Package["lighttpd"],
-	}
-
-	file { "/var/www/otherfile.html":
-		mode	=> 644,
-		owner	=> "root",
-		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/otherfile.html",
-		require => Package["lighttpd"],
-	}
-
-	file { "/var/www/mmp.gif":
-		mode	=> 644,
-		owner	=> "root",
-		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/mmp.gif",
-		require => Package["lighttpd"],
-	}
-
-	file { "/var/www/index.php":
-		mode	=> 644,
-		owner	=> "root",
-		group	=> "root",
-		source	=> "puppet:///modules/lighttpd/index.php",
-		require => Package["lighttpd"],
-	}
+    file { "/var/www/":
+        ensure => directory,
+        recurse => true,
+        purge   => false,
+        force   => true,
+        owner   => "root",
+        group   => "root",
+        mode    => 0644,
+        source  => "puppet:///modules/lighttpd/files",
+    }
 
 	file { "/etc/lighttpd/conf-enabled/10-userdir.conf":
 		notify	=> Service["lighttpd"],
