@@ -15,7 +15,7 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
  <p>This page may be served by either Joey's or Connor's machine.</p>
  <p><img src="./mmp.gif" alt="MMP"></p>
 
-<?php $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+<?php $hostname = gethostbyaddr($_SERVER['X-Proxy']);
 echo "<br>";
 if ($hostname == "ip-10-0-4-29.us-west-2.compute.internal") {
         echo $hostname;
