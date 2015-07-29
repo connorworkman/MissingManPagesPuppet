@@ -1,0 +1,4 @@
+# sendmail/files/local-host-names is managed by puppet
+localhost
+ec2-52-10-230-147.us-west-2.compute.amazonaws.com
+ip-10-0-4-27.us-west-2.compute.internal

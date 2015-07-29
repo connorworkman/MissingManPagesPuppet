@@ -1,4 +1,4 @@
-class sendmail-connor {
+class sendmail {
 	package {
 		"sendmail": ensure => installed;
 	}
@@ -11,7 +11,7 @@ class sendmail-connor {
 		mode 	=> 644,
 		owner	=> "root",
 		group	=> "root",
-		source	=> "puppet:///modules/sendmail-connor/sendmail.conf",
+		source	=> "puppet:///modules/sendmail/sendmail.conf",
 		require	=> Package["sendmail"], #consider adding multiple package requirements here and testing sendmail further
 	}
 
@@ -25,7 +25,7 @@ class sendmail-connor {
 		mode   => 644,
 		owner  => "root",
 		group  => "smmsp",
-		source => "puppet:///modules/sendmail-connor/$hostname/sendmail.mc",
+		source => "puppet:///modules/sendmail/$hostname/sendmail.mc",
 		notify => [ Exec["/usr/bin/make -C /etc/mail"],
 			    Service["sendmail"] ],
 	}
@@ -34,7 +34,7 @@ class sendmail-connor {
         mode    => 0644,
         owner   => "root",
         group   => "smmsp",
-        source  => "puppet:///modules/sendmail-connor/$hostname/sendmail.cf",
+        source  => "puppet:///modules/sendmail/$hostname/sendmail.cf",
         require => Package["sendmail"],
     }
 
@@ -47,7 +47,7 @@ class sendmail-connor {
 		mode   => 644,
 		owner  => "root",
 		group  => "smmsp",
-		source => "puppet:///modules/sendmail-connor/$hostname/local-host-names",
+		source => "puppet:///modules/sendmail/$hostname/local-host-names",
 		notify => Service["sendmail"],
 	}
 
