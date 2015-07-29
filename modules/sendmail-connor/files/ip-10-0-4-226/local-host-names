@@ -1,0 +1,4 @@
+# sendmail-connor/files/local-host-names is managed by puppet
+localhost
+ec2-52-27-147-194.us-west-2.compute.amazonaws.com
+ip-10-0-4-226.us-west-2.compute.internal
