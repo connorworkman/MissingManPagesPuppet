@@ -11,6 +11,7 @@ node ip-10-0-4-226 {
 node ip-10-0-4-27 {
 	include sshd
 	include lighttpd
+    include sendmail
 }
 
 #puppetmaster (reed's instance)
@@ -21,6 +22,6 @@ node ip-10-0-4-230 {
 		minute	=> "*/5",
 	}
 	include sshd
-	include sendmail-reed
+	include sendmail
 	include lighttpd-reed
 }
