@@ -33,7 +33,7 @@ class sendmail-connor {
         notify  => Service["sendmail"],
         mode    => 0644,
         owner   => "root",
-        group   => "root",
+        group   => "smmsp",
         source  => "puppet:///modules/sendmail-connor/$hostname/sendmail.cf",
         require => Package["sendmail"],
     }
