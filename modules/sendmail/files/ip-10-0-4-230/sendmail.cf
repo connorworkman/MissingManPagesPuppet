@@ -158,7 +158,7 @@ Kdequote dequote
 #CL root
 
 # who I masquerade as (null for no masquerading) (see also $=M)
-DMec2-52-27-147-194.us-west-2.compute.amazonaws.com
+DMec2-52-26-200-100.us-west-2.compute.amazonaws.com
 
 # my name for error messages
 DnMAILER-DAEMON
