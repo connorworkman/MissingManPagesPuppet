@@ -5,13 +5,14 @@ node ip-10-0-4-226 {
 	include sshd
 	include lighttpd
 	include sendmail
+	include webmail
 }
 
 #joey's instance
 node ip-10-0-4-27 {
 	include sshd
 	include lighttpd
-    include sendmail
+	include sendmail
 }
 
 #puppetmaster (reed's instance)
