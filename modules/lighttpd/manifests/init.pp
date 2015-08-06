@@ -16,8 +16,8 @@ class lighttpd {
     file { "/var/www/":
         ensure => directory,
         recurse => true,
-        purge   => true,
-        force   => true,
+        purge   => false,
+        #purge is now set to false so that webmail can share /var/www/
         owner   => "root",
         group   => "root",
         mode    => 0644,
