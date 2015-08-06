@@ -31,7 +31,10 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
    }
 
    echo "Owner of the instance serving this page: $instance_name"
- ?>
+?>
+
+For MissingManPagesMail (RoundCube) Support, contact connor@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
+For MissingManPagesMail account creation, send a request with desired username to connor@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
 </font>
 </BODY>
 </html>
