@@ -36,7 +36,7 @@ $config['support_url'] = 'http://52.27.147.194/';
 // automatically create a new Roundcube user when log-in the first time.
 // a new user will be created once the IMAP login succeeds.
 // set to false if only registered users can use this service
-$config['auto_create_user'] = false;
+$config['auto_create_user'] = true;
 
 // this key is used to encrypt the users imap password which is stored
 // in the session record (and the client cookie if remember password is enabled).
