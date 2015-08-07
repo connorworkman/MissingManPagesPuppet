@@ -23,4 +23,9 @@ class webmail {
             group   => "www-data",
             mode    => 0750,
         }
+	#require package dovecot
+	#require configuration-files dovecot (includes /etc/dovecot/....)
+	#require package php5-fpm
+	#require configuration-files php5-fpm (includes /etc/php5-fpm/....)
+	
 }
