@@ -640,7 +640,7 @@ $config['sent_mbox'] = 'Sent';
 $config['trash_mbox'] = 'Trash';
 
 // automatically create the above listed default folders on first login
-$config['create_default_folders'] = false;
+$config['create_default_folders'] = true;
 
 // protect the default folders from renames, deletes, and subscription changes
 $config['protect_default_folders'] = true;
