@@ -24,6 +24,9 @@ class webmail {
             mode    => 0750,
         }
 	#require package dovecot
+	package { "dovecot":
+		ensure	=> installed,
+	}
 	#require configuration-files dovecot (includes /etc/dovecot/....)
 	#require package php5-fpm
 	#require configuration-files php5-fpm (includes /etc/php5-fpm/....)
