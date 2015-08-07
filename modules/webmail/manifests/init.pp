@@ -24,7 +24,10 @@ class webmail {
             mode    => 0750,
         }
 	#require package dovecot
-	package { "dovecot":
+	package { "dovecot-imapd":
+		ensure	=> installed,
+	}
+	package { "dovecot-mysql":
 		ensure	=> installed,
 	}
 	#require configuration-files dovecot (includes /etc/dovecot/....)
