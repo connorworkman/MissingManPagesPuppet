@@ -66,10 +66,10 @@ class webmail {
         service {"mysqld":
             enable  => true,
             ensure  => running,
-            require => Package["mysql-fpm"],
+            require => Package["mysql-server-5.6"],
         }
 
-        package {"mysql-fpm":
+        package {"mysql-server-5.6":
             ensure  => installed,	
             notify  => Service["mysqld"],
         }
