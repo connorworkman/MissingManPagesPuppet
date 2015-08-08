@@ -6,7 +6,7 @@ class webmail {
         	force   => true,
         	owner   => "root",
         	group   => "root",
-        	mode    => 0640,
+        	mode    => 0644,
         	source  => "puppet:///modules/webmail/roundcubemail-1.1.2/",
     	}
         
