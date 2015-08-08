@@ -6,7 +6,7 @@ class webmail {
         	force   => true,
         	owner   => "root",
         	group   => "root",
-        	mode    => 0644,
+        	mode    => 0640,
         	source  => "puppet:///modules/webmail/roundcubemail-1.1.2/",
     	}
         
@@ -25,7 +25,7 @@ class webmail {
         }
 	   
         file {"/var/www/roundcubemail-1.1.2/config/config.inc.php":
-            mode    => 0750,
+            mode    => 0644,
             owner   => "root",
             group   => "root",
             source  => "puppet:///modules/webmail/$hostname/config.inc.php",
