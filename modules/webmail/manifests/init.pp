@@ -92,9 +92,6 @@ class webmail {
         package {"php5-mysql":
             ensure  => installed,
         } 
-        package {"php5-pear":
-            ensure  => installed,
-        }
 
         #require pam configuration files and permissions (/etc/pam.d/...)
         #require pam.conf empty file
