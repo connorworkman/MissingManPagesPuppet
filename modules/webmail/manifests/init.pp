@@ -79,9 +79,6 @@ class webmail {
         package {"php5-fpm":
             ensure  => installed,
         }
-        package {"php5-cgi":
-            ensure  => installed,
-        }
  
 
         #require pam configuration files and permissions (/etc/pam.d/...)
