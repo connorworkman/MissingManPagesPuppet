@@ -13,6 +13,7 @@ node ip-10-0-4-27 {
 	include sshd
 	include lighttpd
 	include sendmail
+    include webmail
 }
 
 #puppetmaster (reed's instance)

@@ -10,7 +10,12 @@
 // Currently supported db_providers: mysql, pgsql, sqlite, mssql or sqlsrv
 // For examples see http://pear.php.net/manual/en/package.database.mdb2.intro-dsn.php
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
-$config['db_dsnw'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
+
+
+//we will make this server hold the master database for now (should move it to puppet master?)
+$config['db_dsnw'] = 'mysql://roundcube:incorrecthorsebatterystaple@ip-10-0-4-27/roundcubemail';
+$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
+
 
 // ----------------------------------
 // IMAP
@@ -31,7 +36,7 @@ $config['default_host'] = 'localhost';
 
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
-$config['support_url'] = 'http://52.27.147.194/';
+$config['support_url'] = 'http://missingmanpages-1289965409.us-west-2.elb.amazonaws.com/';
 
 // automatically create a new Roundcube user when log-in the first time.
 // a new user will be created once the IMAP login succeeds.
