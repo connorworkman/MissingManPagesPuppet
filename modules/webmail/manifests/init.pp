@@ -73,7 +73,7 @@ class webmail {
             mode    => 0644,
             group   => "root",
             owner   => "root",
-            source  => "puppet:///modules/webmail/php5/fpm/php.ini"
+            source  => "puppet:///modules/webmail/php5/fpm/php.ini",
             notify  => Service["php5-fpm"],
         }
 
