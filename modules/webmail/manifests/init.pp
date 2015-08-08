@@ -63,7 +63,7 @@ class webmail {
 	    #require configuration-files php5-fpm (includes /etc/php5-fpm/....)
 
 
-        service {"mysqld":
+        service {"mysql":
             enable  => true,
             ensure  => running,
             require => Package["mysql-server-5.6"],
@@ -71,7 +71,7 @@ class webmail {
 
         package {"mysql-server-5.6":
             ensure  => installed,	
-            notify  => Service["mysqld"],
+            notify  => Service["mysql"],
         }
         package {"zip":
             ensure  => installed,
