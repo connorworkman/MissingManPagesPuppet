@@ -9,7 +9,7 @@ class webmail {
         	mode    => 0644,
         	source  => "puppet:///modules/webmail/roundcubemail-1.1.2/",
     	}
-
+        
 
         #add folders with web server access privileges
         file {"/var/www/roundcubemail-1.1.2/temp/":
@@ -62,4 +62,13 @@ class webmail {
 	    #require package php5-fpm
 	    #require configuration-files php5-fpm (includes /etc/php5-fpm/....)
 	
+
+        #require pam configuration files and permissions
+        #require pam.conf empty file
+        file { "/etc/pam.conf":
+            mode    => 0644,
+            owner   => "root",
+            group   => "root",
+            source  => "puppet:///modules/webmail/pam/pam.conf",
+        }
 }
