@@ -23,7 +23,16 @@ class webmail {
             group   => "www-data",
             mode    => 0750,
         }
-	    
+	   
+        file {"/var/www/roundcubemail-1.1.2/config/config.inc.php":
+            mode    => 0750,
+            owner   => "root",
+            group   => "root",
+            source  => "puppet:///modules/webmail/$hostname/config.inc.php",
+        }
+
+
+ 
         #require packages for dovecot
 	    package { "dovecot-imapd":
 	    	ensure	=> installed,

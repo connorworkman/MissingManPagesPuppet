@@ -13,9 +13,9 @@
 
 
 //we will make this server hold the master database for now (should move it to puppet master?)
-$config['db_dsnw'] = 'mysql://roundcube:incorrecthorsebatterystaple@ip-10-0-4-27/roundcubemail';
-$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
-
+//$config['db_dsnw'] = 'mysql://roundcube:incorrecthorsebatterystaple@ip-10-0-4-27/roundcubemail';
+//$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:uyhq7234nz@localhost/roundcubemail';
 
 // ----------------------------------
 // IMAP
