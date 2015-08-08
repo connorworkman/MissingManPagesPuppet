@@ -84,9 +84,9 @@ class webmail {
         }
         #require php5-fpm service enabled, running, and subscribed to its own config file
         service {"php5-fpm":
-            enabled => true,
+            enable => true,
             ensure  => running,
-            subscribe   => File["/etc/php5/fpm/php.ini"],
+            subscribe => File["/etc/php5/fpm/php.ini"],
         }
 
         package {"php5-mysql":
