@@ -61,9 +61,30 @@ class webmail {
         }
 	    #require package php5-fpm
 	    #require configuration-files php5-fpm (includes /etc/php5-fpm/....)
-	
 
-        #require pam configuration files and permissions
+
+        service {"mysqld":
+            enable  => true,
+            ensure  => running,
+            require => Package["mysql"],
+        }
+
+        package {"mysql":
+            ensure  => installed,	
+            notify  => Service["mysqld"],
+        }
+        package {"zip":
+            ensure  => installed,
+        }
+        package {"php5-fpm":
+            ensure  => installed,
+        }
+        package {"php5-cgi":
+            ensure  => installed,
+        }
+ 
+
+        #require pam configuration files and permissions (/etc/pam.d/...)
         #require pam.conf empty file
         file { "/etc/pam.conf":
             mode    => 0644,
