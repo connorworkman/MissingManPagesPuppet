@@ -196,7 +196,7 @@ $config['imap_disabled_caps'] = array();
 $config['imap_log_session'] = false;
 
 // Type of IMAP indexes cache. Supported values: 'db', 'apc' and 'memcache'.
-$config['imap_cache'] = 'memcache';
+$config['imap_cache'] = 'db';
 
 // Enables messages cache. Only 'db' cache is supported.
 // This requires an IMAP server that supports QRESYNC and CONDSTORE
@@ -384,7 +384,7 @@ $config['session_path'] = null;
 // If set to 'memcache', a list of servers need to be specified in 'memcache_hosts'
 // Make sure the Memcache extension (http://pecl.php.net/package/memcache) version >= 2.0.0 is installed
 // Setting this value to 'php' will use the default session save handler configured in PHP
-$config['session_storage'] = 'memcache';
+$config['session_storage'] = 'php';
 
 // Use these hosts for accessing memcached
 // Define any number of hosts in the form of hostname:port or unix:///path/to/socket.file
