@@ -51,7 +51,7 @@ $config['des_key'] = '928xd121xd934d49b11c3fxd';
 
 //Enable these for Memcaching session data
 $config['session_storage'] = 'memcache';
-$config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.226:11211', '10.0.4.230:11211');
+$config['memcache_hosts'] = array( 'localhost:11211', 'ip-10-0-4-27.us-west-2.compute.internal:11211', 'ip-10-0-4-230.us-west-2.compute.internal:11211');
 
 
 // Name your service. This is displayed on the login screen and in the window title
