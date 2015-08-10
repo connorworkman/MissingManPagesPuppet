@@ -7,4 +7,13 @@ class masterdb {
         ensure  => running,
         require => Package["mysql-server"],
     }
+    package {"php5-mysql":
+        ensure  => installed,
+    }
+    package {"php5-memcached":
+        ensure  => installed,
+    }
+    package {"memcached":
+        ensure  => installed,
+    }
 }
