@@ -12,8 +12,6 @@
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
 
 
-//we will make this server hold the master database for now (should move it to puppet master?)
-//$config['db_dsnw'] = 'mysql://mmpmail:e4ujk9ij23N@ip-10-0-4-230/roundcubemail';
 //$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
 $config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 

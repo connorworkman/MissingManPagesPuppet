@@ -34,8 +34,8 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
 ?>
 <br>
 <p>
-For MissingManPagesMail (RoundCube) Support, contact connor@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
-For MissingManPagesMail account creation, send a request with desired username to connor@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
+For MissingManPagesMail (RoundCube) Support, contact support@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
+For MissingManPagesMail account creation, send a request with desired username to webmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
 </p>
 </font>
 </BODY>

@@ -24,11 +24,11 @@ $config = array();
 // Currently supported db_providers: mysql, pgsql, sqlite, mssql or sqlsrv
 // For examples see http://pear.php.net/manual/en/package.database.mdb2.intro-dsn.php
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
-$config['db_dsnw'] = 'mysql://roundcube:@localhost/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 
 // Database DSN for read-only operations (if empty write database will be used)
 // useful for database replication
-$config['db_dsnr'] = '';
+$config['db_dsnr'] = 'mysql://roundcube:hn2fx88f4@localhost/roundcubemail';
 
 // Disable the use of already established dsnw connections for subsequent reads
 $config['db_dsnw_noread'] = false;
@@ -308,7 +308,7 @@ $config['advanced_prefs'] = array();
 
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
-$config['support_url'] = '';
+$config['support_url'] = 'missingmanpages-1289965409.us-west-2.elb.amazonaws.com';
 
 // replace Roundcube logo with this image
 // specify an URL relative to the document root of this Roundcube installation
