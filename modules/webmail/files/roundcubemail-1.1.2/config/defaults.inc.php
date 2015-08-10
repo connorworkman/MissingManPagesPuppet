@@ -124,7 +124,7 @@ $config['smtp_debug'] = false;
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = '';
+$config['default_host'] = '10.0.4.226';
 
 // TCP port used for IMAP connections
 $config['default_port'] = 143;
@@ -464,7 +464,7 @@ $config['max_recipients'] = 0;
 $config['max_group_members'] = 0; 
 
 // Name your service. This is displayed on the login screen and in the window title
-$config['product_name'] = 'Roundcube Webmail';
+$config['product_name'] = 'MissingManPagesMail';
 
 // Add this user-agent to message headers when sending
 $config['useragent'] = 'Roundcube Webmail/'.RCMAIL_VERSION;

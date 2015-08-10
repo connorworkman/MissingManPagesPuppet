@@ -14,7 +14,7 @@
 
 //local read-only db:
 //$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
-$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
+//$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 
 // ----------------------------------
 // IMAP
@@ -31,11 +31,11 @@ $config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = '10.0.4.226';
+//$config['default_host'] = '10.0.4.226';
 
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
-$config['support_url'] = 'http://missingmanpages-1289965409.us-west-2.elb.amazonaws.com/';
+//$config['support_url'] = 'http://missingmanpages-1289965409.us-west-2.elb.amazonaws.com/';
 
 // automatically create a new Roundcube user when log-in the first time.
 // a new user will be created once the IMAP login succeeds.
