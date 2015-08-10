@@ -49,9 +49,9 @@ $config['des_key'] = '928xd121xd934d49b11c3fxd';
 
 
 
-
-$config['session_storage'] = 'memcache';
-$config['memcache_hosts'] = array( '10.0.4.230:11211');
+//Enable these for Memcaching session data
+//$config['session_storage'] = 'memcache';
+//$config['memcache_hosts'] = array( '10.0.4.230:11211');
 
 
 // Name your service. This is displayed on the login screen and in the window title
