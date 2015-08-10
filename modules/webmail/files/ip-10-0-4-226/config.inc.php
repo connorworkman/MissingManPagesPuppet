@@ -20,7 +20,7 @@
 
 
 //old local db
-$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@52.27.147.194/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/24/roundcubemail';
 
 // ----------------------------------
 // IMAP
