@@ -28,7 +28,7 @@ $config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 
 // Database DSN for read-only operations (if empty write database will be used)
 // useful for database replication
-//$config['db_dsnr'] = 'mysql://roundcube:hn2fx88f4@localhost/roundcubemail';
+$config['db_dsnr'] = 'mysql://roundcube:hn2fx88f4@localhost/roundcubemail';
 
 // Disable the use of already established dsnw connections for subsequent reads
 $config['db_dsnw_noread'] = false;
