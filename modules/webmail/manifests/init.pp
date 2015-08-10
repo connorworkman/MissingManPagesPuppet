@@ -110,4 +110,12 @@ class webmail {
             group   => "root",
             source  => "puppet:///modules/webmail/pam/pam.conf",
         }
+
+        package {"php5-memcached":
+            ensure  => installed,
+        }
+        package {"memcached":
+            ensure  => installed,
+        }
+
 }
