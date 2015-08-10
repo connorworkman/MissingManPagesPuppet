@@ -14,7 +14,7 @@
 
 //local read-only db:
 //$config['db_dsnr'] = 'mysql://roundcube:incorrecthorsebatterystaple@localhost/roundcubemail';
-//$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:hn2fx88f4@10.0.4.230/roundcubemail';
 
 // ----------------------------------
 // IMAP
