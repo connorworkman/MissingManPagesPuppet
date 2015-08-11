@@ -197,7 +197,7 @@ $config['imap_disabled_caps'] = array();
 $config['imap_log_session'] = false;
 
 // Type of IMAP indexes cache. Supported values: 'db', 'apc' and 'memcache'.
-$config['imap_cache'] = 'db';
+$config['imap_cache'] = false;
 
 // Enables messages cache. Only 'db' cache is supported.
 // This requires an IMAP server that supports QRESYNC and CONDSTORE
