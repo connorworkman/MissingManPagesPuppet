@@ -31,7 +31,6 @@ class webmail {
             source  => "puppet:///modules/webmail/$hostname/config.inc.php",
         }
 
-
  
         #require packages for dovecot
 	    package { "dovecot-imapd":
@@ -66,6 +65,7 @@ class webmail {
             require => [ Package["dovecot-imapd"], Package["dovecot-mysql"] ],
             subscribe => File["/etc/dovecot/dovecot.conf"],
         }
+        #require mysql service and mysql packages
         service {"mysql":
             enable  => true,
             ensure  => running,
@@ -75,15 +75,30 @@ class webmail {
             ensure  => installed,	
             notify  => Service["mysql"],
         }
+
         package {"zip":
             ensure  => installed,
         }
+
         file {"/etc/php5/fpm/php.ini":
             mode    => 0644,
             group   => "root",
             owner   => "root",
             source  => "puppet:///modules/webmail/php5/fpm/php.ini",
             notify  => Service["php5-fpm"],
+        }
+
+        file {"/etc/php5/cgi/php.ini":
+            mode    => 0644,
+            group   => "root",
+            owner   => "root",
+            source  => "puppet:///modules/webmail/php5/cgi/php.ini",
+        }
+        file {"/etc/php5/cli/php.ini":
+            mode    => 0644,
+            group   => "root",
+            owner   => "root",
+            source  => "puppet:///modules/webmail/php5/cli/php.ini",
         }
 
 	    #require package php5-fpm
@@ -100,15 +115,6 @@ class webmail {
 
         package {"php5-mysql":
             ensure  => installed,
-        } 
-
-        #require pam configuration files and permissions (/etc/pam.d/...)
-        #require pam.conf empty file
-        file { "/etc/pam.conf":
-            mode    => 0644,
-            owner   => "root",
-            group   => "root",
-            source  => "puppet:///modules/webmail/pam/pam.conf",
         }
 
         package {"php5-memcached":
