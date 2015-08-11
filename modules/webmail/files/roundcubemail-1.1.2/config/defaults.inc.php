@@ -395,6 +395,7 @@ $config['session_storage'] = 'db';
 //$config['memcache_hosts'] = 
 // Controls the use of a persistent connections to memcache servers
 // See http://php.net/manual/en/memcache.addserver.php
+$config['memcache_hosts'] = null;
 $config['memcache_pconnect'] = true;
 
 // Value in seconds which will be used for connecting to the daemon
