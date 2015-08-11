@@ -197,7 +197,7 @@ $config['imap_disabled_caps'] = array();
 $config['imap_log_session'] = false;
 
 // Type of IMAP indexes cache. Supported values: 'db', 'apc' and 'memcache'.
-$config['imap_cache'] = false;
+$config['imap_cache'] = null;
 
 // Enables messages cache. Only 'db' cache is supported.
 // This requires an IMAP server that supports QRESYNC and CONDSTORE
@@ -392,7 +392,7 @@ $config['session_storage'] = 'php';
 // Define any number of hosts in the form of hostname:port or unix:///path/to/socket.file
 // $config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.230:11211'); // e.g. array( 'localhost:11211', '192.168.1.12:11211', 'unix:///var/tmp/memcached.sock' );
 //$config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.230:11211', '10.0.4.27:11211', '10.0.4.226:11211'); // e.g. array( 'localhost:11211', '192.168.1.12:11211', 'unix:///var/tmp/memcached.sock' );
-$config['memcache_hosts'] = 
+//$config['memcache_hosts'] = 
 // Controls the use of a persistent connections to memcache servers
 // See http://php.net/manual/en/memcache.addserver.php
 $config['memcache_pconnect'] = true;
