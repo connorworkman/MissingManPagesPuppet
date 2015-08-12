@@ -315,7 +315,7 @@ $config['support_url'] = 'missingmanpages-1289965409.us-west-2.elb.amazonaws.com
 // specify an URL relative to the document root of this Roundcube installation
 // an array can be used to specify different logos for specific template files, '*' for default logo
 // for example array("*" => "/images/roundcube_logo.png", "messageprint" => "/images/roundcube_logo_print.png")
-$config['skin_logo'] = null;
+$config['skin_logo'] = 'mmp.png';
 
 // automatically create a new Roundcube user when log-in the first time.
 // a new user will be created once the IMAP login succeeds.
