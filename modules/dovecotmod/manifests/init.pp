@@ -29,7 +29,7 @@ class dovecotmod {
         service {"dovecot":
             enable  => true,
             ensure  => running,
-            require => [ Package["dovecot-imapd"], Package["dovecot-mysql"] ],
+            require => [ Package["dovecot-imapd"], Package["dovecot-mysql"], File["/etc/dovecot/dovecot.conf"] ],
             subscribe => File["/etc/dovecot/dovecot.conf"],
         }
 }
