@@ -1,7 +1,7 @@
 class lighttpd-reed {
 	package {
 		"lighttpd": ensure => installed;
-#        "php5-cgi": ensure => installed;
+        "php5-cgi": ensure => installed;
 	}
 
 	file { "/etc/lighttpd/lighttpd.conf":

@@ -31,19 +31,10 @@ class phpmod {
             ensure      => running,
             subscribe   => File["/etc/php5/fpm/php.ini"],
         }
-        package {"php5-cli":
-            ensure  => installed,
-        }
-        package {"php5-cgi":
-            ensure  => installed,
-        }
-        package {"php5-mysql":
-            ensure  => installed,
-        }
-        package {"php5-memcached":
-            ensure  => installed,
-        }
-        package {"php5-memcache":
-            ensure  => installed,
+        package {
+            "php5-cli":         ensure  => installed,
+            "php5-mysql":       ensure  => installed,
+            "php5-memcached":   ensure  => installed,
+            "php5-memcache":    ensure  => installed,
         }
 }
