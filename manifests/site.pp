@@ -3,17 +3,21 @@ import 'classes/*.pp'
 #connor's instance
 node ip-10-0-4-226 {
 	include sshd
-	include lighttpd
+#	include lighttpd
 	include sendmail
-	include webmail
+#	include webmail
+    include phpmod
+    include memcachemod
 }
 
 #joey's instance
 node ip-10-0-4-27 {
 	include sshd
 	include lighttpd
-	include sendmail
+#	include sendmail
     include webmail
+    include phpmod
+    include memcachemod
 }
 
 #puppetmaster (reed's instance)
@@ -25,6 +29,8 @@ node ip-10-0-4-230 {
 	}
     include masterdb
 	include ldap
+    include phpmod
+    include memcachemod
     include sshd
 	include sendmail
 	include lighttpd-reed
