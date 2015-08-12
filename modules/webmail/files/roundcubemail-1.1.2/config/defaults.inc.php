@@ -309,7 +309,7 @@ $config['advanced_prefs'] = array();
 
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
-$config['support_url'] = 'missingmanpages-1289965409.us-west-2.elb.amazonaws.com';
+$config['support_url'] = 'http://missingmanpages-1289965409.us-west-2.elb.amazonaws.com';
 
 // replace Roundcube logo with this image
 // specify an URL relative to the document root of this Roundcube installation
