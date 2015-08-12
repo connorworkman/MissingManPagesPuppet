@@ -8,6 +8,7 @@ node ip-10-0-4-226 {
 #	include webmail
     include phpmod
     include memcachemod
+    include dovecotmod
 }
 
 #joey's instance
