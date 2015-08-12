@@ -515,7 +515,7 @@ $config['mdn_use_from'] = false;
 // 2 - one identity with possibility to edit all params
 // 3 - one identity with possibility to edit all params but not email address
 // 4 - one identity with possibility to edit only signature
-$config['identities_level'] = 0;
+$config['identities_level'] = 4;
 
 // Maximum size of uploaded image in kilobytes
 // Images (in html signatures) are stored in database as data URIs
