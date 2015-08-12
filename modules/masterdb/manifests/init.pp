@@ -16,4 +16,16 @@ class masterdb {
     package {"memcached":
         ensure  => installed,
     }
+
+    file {"/etc/memcached.conf":
+        mode    => 0640,
+        owner   => "root",
+        group   => "root",
+        notify  => Service["memcached"], 
+    }
+    service {"memcached":
+        enable  => true,
+        ensure  => running,
+        subscribe   => File["/etc/memcached.conf"],
+    }
 }

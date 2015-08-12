@@ -101,6 +101,23 @@ class webmail {
             source  => "puppet:///modules/webmail/php5/cli/php.ini",
         }
 
+        #require memcached config file
+        file {"/etc/memcached.conf":
+            mode    => 0640,
+            group   => "root",
+            owner   => "root",
+            source  => "puppet:///modules/webmail/memcached/memcached.conf",
+            notify  => Service["memcached"],
+        }
+        service {"memcached":
+            subscribe   => File["/etc/memcached.conf"],
+            enable  => true,
+            ensure  => running,
+            require => Package["memcached"],
+        }
+
+
+
 	    #require package php5-fpm
 	    #require configuration-files php5-fpm (includes /etc/php5-fpm/....)
         package {"php5-fpm":
@@ -123,5 +140,7 @@ class webmail {
         package {"memcached":
             ensure  => installed,
         }
-
+        package {"php5-memcache":
+            ensure  => installed,
+        }
 }
