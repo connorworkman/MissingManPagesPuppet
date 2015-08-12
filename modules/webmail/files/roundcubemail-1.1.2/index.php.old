@@ -171,23 +171,6 @@ if ($RCMAIL->task == 'login' && $RCMAIL->action == 'login') {
     }
 }
 
-$hostname=gethostname();
-
-  switch ($hostname) {
-   case "ip-10-0-4-226":
-    $instance_name="<a href=\"http://ec2-52-27-147-194.us-west-2.compute.amazonaws.com/\">Connor</a>";
-    break;
-   case "ip-10-0-4-27";
-    $instance_name="<a href=\"http://ec2-52-10-243-147.us-west-2.compute.amazonaws.com/\">Joey</a>";
-    break;
-   default:
-    $instance_name="someone else (this shouldn't happen)";
-    break;
-   }
-
-   echo "Owner of the instance serving this page: $instance_name"
-
-
 // end session
 else if ($RCMAIL->task == 'logout' && isset($_SESSION['user_id'])) {
     $RCMAIL->request_security_check($mode = rcube_utils::INPUT_GET);
@@ -326,8 +309,3 @@ rcmail::raise_error(array(
     'line' => __LINE__,
     'file' => __FILE__,
     'message' => "Invalid request"), true, true);
-
-
-
-
-
