@@ -125,7 +125,7 @@ $config['smtp_debug'] = false;
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = 'ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
+$config['default_host'] = 'tls://ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
 
 // TCP port used for IMAP connections
 $config['default_port'] = 143;
