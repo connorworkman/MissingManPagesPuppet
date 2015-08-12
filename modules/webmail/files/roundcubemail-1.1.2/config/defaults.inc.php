@@ -385,17 +385,17 @@ $config['session_path'] = null;
 // If set to 'memcache', a list of servers need to be specified in 'memcache_hosts'
 // Make sure the Memcache extension (http://pecl.php.net/package/memcache) version >= 2.0.0 is installed
 // Setting this value to 'php' will use the default session save handler configured in PHP
-$config['session_storage'] = 'db';
-//$config['session_storage'] = 'memcache';
+//$config['session_storage'] = 'db';
+$config['session_storage'] = 'memcache';
 
 // Use these hosts for accessing memcached
 // Define any number of hosts in the form of hostname:port or unix:///path/to/socket.file
 // $config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.230:11211'); // e.g. array( 'localhost:11211', '192.168.1.12:11211', 'unix:///var/tmp/memcached.sock' );
-//$config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.230:11211', '10.0.4.27:11211', '10.0.4.226:11211'); // e.g. array( 'localhost:11211', '192.168.1.12:11211', 'unix:///var/tmp/memcached.sock' );
+$config['memcache_hosts'] = array( 'localhost:11211', '10.0.4.230:11211', '10.0.4.27:11211', '10.0.4.226:11211'); // e.g. array( 'localhost:11211', '192.168.1.12:11211', 'unix:///var/tmp/memcached.sock' );
 //$config['memcache_hosts'] = 
 // Controls the use of a persistent connections to memcache servers
 // See http://php.net/manual/en/memcache.addserver.php
-$config['memcache_hosts'] = null;
+//$config['memcache_hosts'] = null;
 $config['memcache_pconnect'] = true;
 
 // Value in seconds which will be used for connecting to the daemon
