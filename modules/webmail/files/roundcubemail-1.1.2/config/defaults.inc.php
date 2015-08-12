@@ -128,7 +128,7 @@ $config['smtp_debug'] = false;
 $config['default_host'] = 'tls://ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
 
 // TCP port used for IMAP connections
-$config['default_port'] = 993;
+$config['default_port'] = 143;
 
 // IMAP AUTH type (DIGEST-MD5, CRAM-MD5, LOGIN, PLAIN or null to use
 // best server supported one)
