@@ -171,22 +171,6 @@ if ($RCMAIL->task == 'login' && $RCMAIL->action == 'login') {
     }
 }
 
-$hostname=gethostname();
-
-  switch ($hostname) {
-   case "ip-10-0-4-226":
-    $instance_name="<a href=\"http://ec2-52-27-147-194.us-west-2.compute.amazonaws.com/\">Connor</a>";
-    break;
-   case "ip-10-0-4-27";
-    $instance_name="<a href=\"http://ec2-52-10-243-147.us-west-2.compute.amazonaws.com/\">Joey</a>";
-    break;
-   default:
-    $instance_name="someone else (this shouldn't happen)";
-    break;
-   }
-
-   echo "Owner of the instance serving this page: $instance_name"
-
 
 // end session
 else if ($RCMAIL->task == 'logout' && isset($_SESSION['user_id'])) {
@@ -311,6 +295,24 @@ while ($redirects < 5) {
         break;
     }
 }
+
+$hostname=gethostname();
+
+  switch ($hostname) {
+   case "ip-10-0-4-226":
+    $instance_name="<a href=\"http://ec2-52-27-147-194.us-west-2.compute.amazonaws.com/\">Connor</a>";
+    break;
+   case "ip-10-0-4-27";
+    $instance_name="<a href=\"http://ec2-52-10-243-147.us-west-2.compute.amazonaws.com/\">Joey</a>";
+    break;
+   default:
+    $instance_name="someone else (this shouldn't happen)";
+    break;
+   }
+
+   echo "Owner of the instance serving this page: $instance_name"
+
+
 
 if ($RCMAIL->action == 'refresh') {
     $RCMAIL->plugins->exec_hook('refresh', array('last' => intval(rcube_utils::get_input_value('_last', rcube_utils::INPUT_GPC))));
