@@ -13,6 +13,9 @@ class masterdb {
     package {"php5-memcached":
         ensure  => installed,
     }
+    package {"php5-memcache":
+        ensure  => installed,
+    }
     package {"memcached":
         ensure  => installed,
     }

@@ -24,7 +24,8 @@ node ip-10-0-4-230 {
 		minute	=> "*/5",
 	}
     include masterdb
-	include sshd
+	include ldap
+    include sshd
 	include sendmail
 	include lighttpd-reed
 }
