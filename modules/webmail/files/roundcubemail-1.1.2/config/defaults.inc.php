@@ -1,17 +1,17 @@
 <?php
 
 /*
- +-----------------------------------------------------------------------+
- | Main configuration file with default settings                         |
- |                                                                       |
- | This file is part of the Roundcube Webmail client                     |
- | Copyright (C) 2005-2013, The Roundcube Dev Team                       |
- |                                                                       |
- | Licensed under the GNU General Public License version 3 or            |
- | any later version with exceptions for skins & plugins.                |
- | See the README file for a full license statement.                     |
- +-----------------------------------------------------------------------+
-*/
+   +-----------------------------------------------------------------------+
+   | Main configuration file with default settings                         |
+   |                                                                       |
+   | This file is part of the Roundcube Webmail client                     |
+   | Copyright (C) 2005-2013, The Roundcube Dev Team                       |
+   |                                                                       |
+   | Licensed under the GNU General Public License version 3 or            |
+   | any later version with exceptions for skins & plugins.                |
+   | See the README file for a full license statement.                     |
+   +-----------------------------------------------------------------------+
+ */
 
 $config = array();
 
@@ -46,11 +46,11 @@ $config['db_prefix'] = '';
 // This can be used in a setup with replicated databases and a DB master
 // where read/write access to cache tables should not go to master.
 $config['db_table_dsn'] = array(
-//    'cache' => 'r',
-//    'cache_index' => 'r',
-//    'cache_thread' => 'r',
-//    'cache_messages' => 'r',
-);
+		//    'cache' => 'r',
+		//    'cache_index' => 'r',
+		//    'cache_thread' => 'r',
+		//    'cache_messages' => 'r',
+		);
 
 // It is possible to specify database variable values e.g. some limits here.
 // Use them if your server is not MySQL or for better performance.
@@ -128,7 +128,7 @@ $config['smtp_debug'] = false;
 $config['default_host'] = 'tls://ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
 
 // TCP port used for IMAP connections
-$config['default_port'] = 143;
+$config['default_port'] = 993;
 
 // IMAP AUTH type (DIGEST-MD5, CRAM-MD5, LOGIN, PLAIN or null to use
 // best server supported one)
