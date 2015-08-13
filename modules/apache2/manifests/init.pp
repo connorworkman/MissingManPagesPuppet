@@ -40,8 +40,10 @@ class apache2{
 
     file { "/etc/apache2/conf-available/000-webmail.conf":
 		notify	=> Service["apache2"],
-		ensure	=> link,
-		target	=> "/etc/apache2/conf-available/000-webmail.conf",
+		mode	=> 644,
+		owner	=> "root",
+		group	=> "root",
+		source	=> "puppet:///modules/apache2/000-webmail.conf",
 		require => Package["apache2"],
 	}
 
