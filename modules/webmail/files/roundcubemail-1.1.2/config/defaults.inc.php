@@ -125,8 +125,8 @@ $config['smtp_debug'] = false;
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-#$config['default_host'] = 'tls://ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
-$config['default_host'] = '10.0.4.226';
+$config['default_host'] = 'ec2-52-27-147-194.us-west-2.compute.amazonaws.com';
+#$config['default_host'] = '10.0.4.226';
 
 
 // TCP port used for IMAP connections
@@ -452,7 +452,7 @@ $config['username_domain_forced'] = false;
 // %d - domain (http hostname without the first part)
 // %z - IMAP domain (IMAP hostname without the first part)
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['mail_domain'] = 'ec2-52-27-147-194-us-west-2.compute.amazonaws.com';
+$config['mail_domain'] = '';
 
 // Password charset.
 // Use it if your authentication backend doesn't support UTF-8.
