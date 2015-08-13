@@ -15,13 +15,13 @@ class webmail {
             ensure  => directory,
             owner   => "www-data",
             group   => "www-data",
-            mode    => 0750,
+            mode    => 0200,
         }
         file {"/var/www/roundcubemail-1.1.2/logs/":
             ensure  => directory,
             owner   => "www-data",
             group   => "www-data",
-            mode    => 0750,
+            mode    => 0200,
         }
 	   
         file {"/var/www/roundcubemail-1.1.2/config/config.inc.php":
