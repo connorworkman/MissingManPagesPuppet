@@ -25,7 +25,7 @@ class webmail {
         }
 	   
         file {"/var/www/roundcubemail-1.1.2/config/config.inc.php":
-            mode    => 0400,
+            mode    => 0644,
             owner   => "root",
             group   => "root",
             source  => "puppet:///modules/webmail/$hostname/config.inc.php",
