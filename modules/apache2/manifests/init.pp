@@ -38,12 +38,28 @@ class apache2{
 		require => Package["apache2"],
 	}
 
+    file { "/etc/apache2/conf-enabled/php5-cgi-enabled.conf":
+		notify	=> Service["apache2"],
+		ensure	=> link,
+		target	=> "/etc/apache2/conf-available/php5-cgi-enabled.conf",
+		require => Package["apache2"],
+	}
+
     file { "/etc/apache2/conf-available/000-webmail.conf":
 		notify	=> Service["apache2"],
 		mode	=> 644,
 		owner	=> "root",
 		group	=> "root",
 		source	=> "puppet:///modules/apache2/000-webmail.conf",
+		require => Package["apache2"],
+	}
+
+    file { "/etc/apache2/conf-available/php5-cgi-enabled.conf":
+		notify	=> Service["apache2"],
+		mode	=> 644,
+		owner	=> "root",
+		group	=> "root",
+		source	=> "puppet:///modules/apache2/php5-cgi-enabled.conf",
 		require => Package["apache2"],
 	}
 
