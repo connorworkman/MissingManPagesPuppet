@@ -14,7 +14,8 @@ node ip-10-0-4-226 {
 #joey's instance
 node ip-10-0-4-27 {
 	include sshd
-	include lighttpd
+#	include lighttpd
+	include apache2
 #	include sendmail
     include webmail
     include phpmod
