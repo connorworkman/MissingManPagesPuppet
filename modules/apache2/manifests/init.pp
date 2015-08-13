@@ -38,7 +38,7 @@ class apache2{
 		require => Package["apache2"],
 	}
 
-    file { "/etc/apache2/conf-enabled/000-webmail.conf":
+    file { "/etc/apache2/conf-available/000-webmail.conf":
 		notify	=> Service["apache2"],
 		ensure	=> link,
 		target	=> "/etc/apache2/conf-available/000-webmail.conf",
