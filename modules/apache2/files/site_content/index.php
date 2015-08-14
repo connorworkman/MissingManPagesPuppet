@@ -39,9 +39,9 @@ Welcome to...<hr>
 <p>
 Contact:
 </p>
-<p>To report malicious activity originating on our system: abuse@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
-<p>For general mail service inquiries: postmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
-<p>For general web service problems/inquiries: webmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+<p>To report malicious activity originating on our system:<br> abuse@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+<p>For general mail service inquiries:<br> postmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+<p>For general web service problems/inquiries:<br> webmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
 
 
 
