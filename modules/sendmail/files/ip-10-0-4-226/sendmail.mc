@@ -88,7 +88,7 @@ dnl #
 dnl #
 dnl #
 dnl #
-FEATURE(`dnsbl',`zen.spamhaus.org')dnl
+FEATURE(`dnsbl',`zen.spamhaus.org',`"Message rejected, found in zen.spamhaus.org blacklist"')dnl
 dnl #
 dnl #
 dnl #
