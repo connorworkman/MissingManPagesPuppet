@@ -7,13 +7,16 @@ hr { display: block; height: 1px;
 	margin: 1em 0; padding: 0; margin: 0 auto;}
 </STYLE>
 </HEAD>
+
+
 Welcome to...<hr>
 <BODY bgcolor="black" TEXT="white" LINK="yellow" VLINK="839590" STYLE="width: 85%; margin: 0 auto;">
+
+ <p><img src="./mmp.gif" alt="MMP"></p>
 <p alight="left"><font color="red" size=5>
-The Missing Man Pages - WebServer</font></p>
+</font></p>
 <--<font face="arial">
  <p>This page may be served by either Joey's or Connor's machine.</p>
- <p><img src="./mmp.gif" alt="MMP"></p>
 
  <?php
   $hostname=gethostname();
@@ -34,8 +37,14 @@ The Missing Man Pages - WebServer</font></p>
 ?>-->
 <br>
 <p>
-For MissingManPagesMail (RoundCube) Support, contact support@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
-For MissingManPagesMail account creation, send a request with desired username to webmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
+Contact:
+</p>
+<p>To report malicious activity originating on our system: abuse@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+<p>For general mail service inquiries: postmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+<p>For general web service problems/inquiries: webmaster@ec2-52-27-147-194.us-west-2.compute.amazonaws.com</p>
+
+
+
 </p>
 </font>
 </BODY>
