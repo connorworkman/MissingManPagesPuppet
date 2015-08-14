@@ -16,7 +16,7 @@ Welcome to...<hr>
 <p alight="left"><font color="red" size=5>
 </font></p>
 
-<-- This page may be served by either Joey's or Connor's machine.
+<!-- This page may be served by either Joey's or Connor's machine.
 -->
  <?php /*
   $hostname=gethostname();
