@@ -15,10 +15,10 @@ Welcome to...<hr>
  <p><img src="./mmp.gif" alt="MMP"></p>
 <p alight="left"><font color="red" size=5>
 </font></p>
-<--<font face="arial">
- <p>This page may be served by either Joey's or Connor's machine.</p>
 
- <?php
+<-- <p>This page may be served by either Joey's or Connor's machine.</p>
+-->
+ <?php /*
   $hostname=gethostname();
 
   switch ($hostname) {
@@ -34,7 +34,7 @@ Welcome to...<hr>
    }
 
    echo "Owner of the instance serving this page: $instance_name"
-?>-->
+*/?>
 <br>
 <p>
 Contact:
