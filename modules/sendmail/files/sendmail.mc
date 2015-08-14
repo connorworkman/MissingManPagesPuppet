@@ -81,13 +81,21 @@ FEATURE(`greet_pause', `1000')dnl 1 seconds
 dnl #
 dnl # Delay_checks allows sender<->recipient checking
 FEATURE(`delay_checks', `friend', `n')dnl
-dnl #
 dnl # If we get too many bad recipients, slow things down...
 define(`confBAD_RCPT_THROTTLE',`3')dnl
 dnl #
 dnl # Stop connections that overflow our concurrent and time connection rates
 FEATURE(`conncontrol', `nodelay', `terminate')dnl
 FEATURE(`ratecontrol', `nodelay', `terminate')dnl
+dnl #
+dnl #
+dnl #
+dnl # Add feature DNS BlackListing with one blacklist from spamhaus.org
+FEATURE(`dnsbl', `zen.spamhaus.org')dnl
+dnl #
+dnl #
+dnl #
+dnl #
 dnl #
 dnl # If you're on a dialup link, you should enable this - so sendmail
 dnl # will not bring up the link (it will queue mail for later)
