@@ -82,6 +82,27 @@ dnl #
 dnl # Delay_checks allows sender<->recipient checking
 FEATURE(`delay_checks', `friend', `n')dnl
 dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+FEATURE(`dnsbl',`zen.spamhaus.org')dnl
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
+dnl #
 dnl # If we get too many bad recipients, slow things down...
 define(`confBAD_RCPT_THROTTLE',`3')dnl
 dnl #
