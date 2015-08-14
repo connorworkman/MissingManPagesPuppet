@@ -10,8 +10,8 @@ hr { display: block; height: 1px;
 Welcome to...<hr>
 <BODY bgcolor="black" TEXT="white" LINK="yellow" VLINK="839590" STYLE="width: 85%; margin: 0 auto;">
 <p alight="left"><font color="red" size=5>
-The Missing Man Pages - Load Balanced HTTP Server</font></p>
-<font face="arial">
+The Missing Man Pages - WebServer</font></p>
+<--<font face="arial">
  <p>This page may be served by either Joey's or Connor's machine.</p>
  <p><img src="./mmp.gif" alt="MMP"></p>
 
@@ -31,7 +31,7 @@ The Missing Man Pages - Load Balanced HTTP Server</font></p>
    }
 
    echo "Owner of the instance serving this page: $instance_name"
-?>
+?>-->
 <br>
 <p>
 For MissingManPagesMail (RoundCube) Support, contact support@ec2-52-27-147-194.us-west-2.compute.amazonaws.com<br>
